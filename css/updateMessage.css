@@ -1,0 +1,11 @@
+body{
+    background-color:black;
+    color: #cccccc;
+    background-image: url('../images/updaterBackSplash.svg')
+}
+#message{
+    height: 100%;
+    width:100%;
+    text-align:center;
+    padding-top:145px;
+}

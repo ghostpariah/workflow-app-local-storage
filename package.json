@@ -1,0 +1,38 @@
+{
+  "name": "electronworkflow",
+  "version": "1.1.1",
+  "description": "app to manage workflow for Frame & Spring",
+  "main": "scripts/main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "install-app-deps",
+    "dist": "electron-builder --windows",
+    "gh-publish": "electron-builder -p always"
+  },
+  "author": "Sean Davidson",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^17.4.0",
+    "electron-builder": "^22.14.13"
+  },
+  "dependencies": {
+    "date-holidays": "^3.14.8",
+    "electron-log": "^4.4.6",
+    "electron-updater": "^5.0.1",
+    "sqlite3": "^5.0.3"
+  },
+  "build": {
+    "appId": "com.ghostPariah.workflowApp",
+    "productName": "Workflow App",
+    "win": {
+      "target": "nsis-web",
+      "icon": "images/logo.ico",
+      "publish": "github"
+    },
+    "nsisWeb": {
+      "perMachine": true,
+      "installerIcon": "images/logo.ico"
+    }
+  },
+  "repository": "https://github.com/ghostpariah/thunder-canyon.git"
+}

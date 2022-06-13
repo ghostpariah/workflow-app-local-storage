@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" type="text/css" href="../css/calendar_style.css"/>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	
+    <script src="../scripts/calendar_script.js"></script>
+    <script src="../scripts/jquery-1.11.3.min.js"></script>
+	
+	<script src="../scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>	
+	<script>if (window.module) module = window.module;</script>
+	
+</head>
+<body onload="calendarLoad()">
+    <div id="calendar-container">
+        <!--
+        <div id="cal-tabs-container">
+            <div id="cal-tab0" class="cal-tab" onclick="selectCalendarType(this)">Monthly</div>
+            <div id="cal-tab1" class="cal-tab" onclick="selectCalendarType(this)">Weekly</div>
+        </div>
+        -->	
+        <div id="sub-cal-container">
+        <div id="calendar-header">
+            <div id="previousMonth" onclick="setCalendarMonth('previous')"><</div>
+            <div id="calendar-month-year"></div>
+            <div id="nextMonth" onclick="setCalendarMonth('next')">></div>
+        </div>
+        <div id="calendar-dates">
+            <div id="day-header">
+                <div class="day-name">Sun</div>
+                <div class="day-name">Mon</div>
+                <div class="day-name">Tues</div>
+                <div class="day-name">Wed</div>
+                <div class="day-name">Thu</div>
+                <div class="day-name">Fri</div>
+                <div class="day-name">Sat</div>
+            </div>
+            <div id="calendar-days-container">
+            
+            </div>
+        </div>
+        <div id="footer">
+            <div id="springLegend" class="calendarLegend">Spring</div>
+            <div id="checkallLegend" class="calendarLegend">Check All</div>
+            <div id="alignmentLegend" class="calendarLegend">Alignment</div>
+            <div id="kingpinLegend" class="calendarLegend">King Pin</div>
+            <div id="frameLegend" class="calendarLegend">Frame</div>
+            <div id="legObserveHoliday" class="legHoliday">Observed Holiday</div>
+            <div id="legBankHoliday" class="legHoliday">Bank Holiday</div>
+            
+        </div>
+        </div>
+    </div>
+    
+    </div>    
+</body>
+</html>

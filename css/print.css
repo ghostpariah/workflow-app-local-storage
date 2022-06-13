@@ -1,0 +1,64 @@
+body{
+	height:99%;
+	width: 460px;
+}
+
+@media print{
+	#reportPrint{
+		font-size: .5em;
+	}
+}
+#reportPrint{
+	width:450px;
+	height:300px;;
+	position:absolute;
+	background-color:white;
+	color:black;
+	font-family:"Times New Roman";
+	
+	border:2px solid black;
+	
+	
+}
+#reportHeader{
+	font-size:31pt;
+	width:100%;
+	border-bottom:3px solid black;
+	text-align:left;
+	float:left;
+	
+}
+.reportData{
+	font-size:25px;
+	margin-top:20px;
+	font-weight:bold;
+	border-bottom:2px solid black;
+}
+
+#reportPrint input{
+display:none;
+}
+#mt,#dt{
+	font-weight:bolder;
+	font-style:oblique;
+}
+.lineItem{
+	width:100%;
+	border-bottom:1px solid black;
+	height:auto;
+	background-color:white;
+	float:left;
+	font-size:15pt;
+	
+}/*
+.lineItem:nth-child(even){
+	background-color:lightgray;
+}
+div.lineItem:first-child{
+	border-top:1px solid black;
+}
+*/
+.reportTotal{
+	float:right;
+	width:50%;
+}

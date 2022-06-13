@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Administration</title>
+    
+    <link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/users.css">
+    
+	<link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	
+	<script src="../scripts/jquery-1.11.3.min.js"></script>
+	
+	<script src="../scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>	
+	
+	 
+	
+	<script src="../scripts/users.js"></script>	
+		
+	
+	<script>if (window.module) module = window.module;</script>
+</head>
+<body>
+    <h3>CREATE NEW USER</h3>
+    
+        
+    <div id="wrapper1" class='wrapper'>
+        
+        <div id="-message-area"></div>
+        
+        <form id="frmNewUser" class="wrapper">
+            <label class="uLabel">User Name:</label>
+            
+            <label class="uLabel">Password:</label>
+            <label class="checkboxLabel">Role:</label>
+            <input class="userDisplay" id="user"><br>
+            <input class="userDisplay" id="password"><br>
+            
+            <select id='role' class="dropRole">
+                <option disabled selected value></option>
+                <option id='userOption' value='option1'>user</option>
+                <option id='adminOption' value='option2'>admin</option>		
+            </select>
+            <input class="-user-submit" type="button" value="add" onclick="createUser()"/>
+        </form>
+    </div>
+
+
+    
+    <div id="wrapper2" class='wrapper'>
+        
+        <div id="-message-area"></div>
+        <h3>EDIT USERS</h3>
+        <form class="userWrapper">
+            
+            <div class="userWrapper">
+                
+                <label class="uLabel">Username:</label>
+                <label class="uLabel">Password:</label>
+                <label class="checkboxLabel">Role:</label>
+                <label class="checkboxLabel">Active:</label>
+                
+            </div>
+            <div id="userWrapper" class="userWrapper">
+               
+            </div>
+            
+        </form>
+        
+    </div>
+   
+</body>
+</html>

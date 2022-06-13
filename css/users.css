@@ -1,0 +1,119 @@
+body{
+    background-color: #1b1a1a;
+    
+    color:white;
+    font-family: 'Arial Narrow'
+    
+}
+form{
+    text-align: center;
+    width:400px;
+}
+
+.wrapper{
+    float:left;    
+    width:100%;
+    height:auto;
+}
+
+h3{
+    text-align: left;
+    width:95%;
+    border-bottom:1px solid #5e81ad;
+    color:#5e81ad;
+}
+
+.-user-submit{
+    float:left;
+    color:black;
+    background-color:#5e81ad;
+    width: 15%;   
+    font-size: 1.2em;
+    height: 1.6em;
+    border:none;
+    margin-left: 5px;    
+    padding-top: 0px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+.-user-submit-edit{
+    float:right;
+    color:black;
+    background-color:#5e81ad;
+    width: 97%;
+    cursor: pointer;
+    font-size: 1.2em;
+    height: 1.8em;
+    border:none;    
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.-user-submit:hover{
+    color: white;
+}
+.-user-submit-edit:hover{
+    color: white;
+}
+#-message-area{
+    color:yellowgreen;
+    text-align: center;
+    width: 95%;
+    font-size:1.25em;
+}
+
+.userWrapper{
+    float:left;
+    width:100%;
+    height:2.5em;
+}
+.userDisplay{
+    float:left;
+    width: calc(60%/2);
+    height:1.5rem;
+    margin: 5px;
+    font-size: 1.2em;
+}
+.userNameDisplay{
+    float:left;
+    width: calc(60%/2);
+    height:1.6rem;
+    margin: 5px;
+    border: 1px solid #5e81ad;
+    font-size: 1.2em;
+}
+.uLabel{
+    float:left;
+    width: calc(60%/2);
+    text-align: left;
+    height: 2em;
+    /* margin-top:20px; */
+    font-size: 1.2em;
+    /* padding-top:20px; */
+    padding-bottom: 0px;
+    transform: translateY(40%);
+    margin-left: 10px;
+}
+.checkboxLabel{
+    float:left;
+    width: 15%;
+    text-align: left;
+    height: 2em;
+    
+    font-size: 1.2em;
+    /* padding-top:20px; */
+    padding-bottom: 0px;
+    transform: translateY(40%);
+     margin-left: 10px; 
+}
+.checkbox{
+   margin-top: 5px;
+    width:15%;
+    height: 2em;
+}
+.dropRole{
+    float:left;
+    width:15%;
+    height: 1.6em;
+    font-size: 1.2em;
+    transform: translateY(12%);
+}

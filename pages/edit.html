@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job</title>
+    
+    <link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/edit.css">
+    
+    <script src="../scripts/fillContacts.js"></script>
+    
+    
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	
+    
+</head>
+<body>
+    <div id="addBlock">
+       
+        <form id="addBlockForm" onsubmit="alert('hi')">
+            <fieldset class="visibleFieldset"id="h">
+                <legend>
+                    Required Job Info
+                </legend>
+                
+                <span class="visibleInput" id="customerNameWrapper">
+                    
+                    <label>Customer Name:&nbsp;</label>
+                    
+                    <input id="txtCustomerName" tabindex="1" list="lstCustomer"  type="text" style="z-index:20000;"/>
+                    
+                    <datalist id="lstCustomer" class="classic">
+                        
+                      </datalist>
+                </span>
+                <span class="visibleInput" id="custNameWrapper">
+                    
+                    <label for="txtContacts">Contacts:&nbsp;</label>
+                    
+                  
+                    <select id="txtContacts" class="classic" tabindex="2" onchange="changeContact(this)" type="text" style="z-index:20000;">
+                    
+                    </select>
+                    
+                    
+                   
+                    
+                </span>
+                <span class="visibleInput" id="unitWrapper">
+                    <label>Unit#:&nbsp;</label>
+                    <input id="txtUnit" tabindex="3"  type="text"/>
+                </span>
+                <span class="visibleInput" id="originWrapper"> <label for="selOrigin">Job Status:&nbsp;</label>
+                    <select id="selOrigin" class='classic' tabindex="4" >
+                        <option value="None"></option>
+                        <option value="On the Lot">On the Lot</option>
+                        <option value="Scheduled">Scheduled</option>
+                        
+                    </select> 
+                </span>
+                <span id="dateWrapper" class="visibleInput">
+                    <label>Schedule Date: &nbsp;</label>
+                    <input type="text" id="datepicker" tabindex="5">
+                    <br/>
+                    <span>
+                        <label>AM</label>
+                        <input type='radio' id="radAM" tabindex='6'name='ampm2' value='am'>
+                        <label>PM</label>
+                        <input type='radio' id="radPM" tabindex='7' name='ampm2' value='pm'>
+                    </span> 
+                </span>
+                
+                
+
+                <span class="visibleInput" id="jobTypeWrapper">
+                    <label>Job Type: &nbsp;</label>
+                    <select id="selJobType" class='classic' tabindex="8" >
+                        <option value="None"></option>
+                        <option value="Spring">Spring</option>
+                        <option value="Alignment">Alignment</option>
+                        <option value="Frame">Frame</option>
+                        <option value="King Pin">King Pin</option>
+                        <option value="Check All">Check All</option>
+                    </select> 
+                </span>
+
+            </fieldset>
+           
+            
+
+                <fieldset class="visibleFieldset"id="cbWrapper">
+                    <legend>
+                        Optional Job Info: Check all that apply
+                    </legend>
+                    <span class="visibleInput">Cash Customer:
+                        <input type="checkbox" id="cbCash" tabindex="9" />
+                    </span>
+                    <div id="est" class="visibleInput">
+                        <label>Estimated cost:</label>
+                        <input id="txtCost" type="text" tabindex="10"/>
+                    </div>
+                    <span class="visibleInput">
+                        <label>Parts Needed:</label>
+                        <input id="cbParts" type="checkbox" tabindex="11"/>
+                    </span>
+                    <span class="visibleInput">
+                        <label>Approval Needed:</label>
+                        <input id="cbApproval" type="checkbox" tabindex="12"/>
+                    </span>
+                    <span class="visibleInput">
+                        <label>Checked:</label>
+                        <input id="cbChecked" type="checkbox" tabindex="13"/>
+                    </span>
+                    <span class="visibleInput">
+                        <label>Comeback:</label>
+                        <input id="cbComeback"type="checkbox" tabindex="14"/>
+                    </span>
+                    <span class="visibleInput">
+                        <label>Waiting:</label>
+                        <input id="cbWaiting" type="checkbox" tabindex="15"/>
+                    </span>
+                    <span class="visibleInput">
+                        <label>No-Show:</label>
+                        <input id="cbNoShow" type="checkbox" tabindex="16"/>
+                    </span>
+                    
+                </fieldset>
+                <fieldset class="visibleFieldset" id="notesFieldset">
+                <legend>Notes</legend>
+                <span class="visibleInput" id="notesWrapper">
+                
+                    <textarea id="txtNotes" rows="6" cols="49" tabindex="16" type="text" style="vertical-align:middle;"></textarea>
+                </span>
+            </fieldset>
+                <span id="formButtons" class="visibleInput">
+                    <input class= "btn" id="frmSubmit" type="button" tabindex="17" value="Save Changes"onclick="updateJob()"/>
+                    <input class= "btn" id="frmCancel" type="button" tabindex="19" value="Cancel" onclick="cancelAdd()"/>
+                    
+                    
+                </span>
+            
+        </form>
+    </div> 
+    <script src='../scripts/edit.js'></script>
+    <script src="../scripts/jquery-1.11.3.min.js"></script>
+    <script src="../scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>	
+</body>
+
+</html>

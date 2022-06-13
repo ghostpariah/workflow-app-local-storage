@@ -1,0 +1,24 @@
+.welcome{
+	font-size: 4em;
+}
+#open-content{
+	
+	text-align: center;
+	color:#5e81ad;;
+	font-family: "Arial Narrow";
+	width: 99%;
+	background-color: black;
+	
+}
+#headlineContent{
+    
+    display:flex;
+	justify-content: center;
+    /* margin-left: 600px; */
+    text-align:center;
+}
+
+#headlineContent > ul, li{
+    text-align:left;
+   
+}

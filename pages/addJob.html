@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Job</title>
+    
+    
+    <link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/addJob.css">
+    
+    <script src='../scripts/addJob.js'></script>
+    <!--<script src="../scripts/calendar_script.js"></script>-->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="../scripts/jquery-1.11.3.min.js"></script>
+    <script src="../scripts/fillContacts.js"></script>
+    
+    
+	<script src="../scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>	
+	
+	
+	<script>if (window.module) module = window.module;</script>
+	
+</head>
+<body>
+    <div id="addBlock">
+       
+        
+            <fieldset class="visibleFieldset"id="h">
+                <legend>
+                    Required Job Info
+                </legend>
+                
+                <div class="visibleInput" id="customerNameWrapper">
+                    
+                    <label>Customer Name:&nbsp;</label>
+                    
+                    <input id="txtCustomerName" class="classic" tabindex="1" list="lstCustomer" onfocus="fillCustomerDataList()" type="text" style="z-index:20000;"/>
+                    
+                    <datalist id="lstCustomer" class="classic">
+                        
+                      </datalist>
+                </div>
+                <div class="visibleInput" id="custNameWrapper">
+                    
+                    <label for="txtContacts">Contacts:&nbsp;</label>
+                    
+                  
+                    <select id="txtContacts" class="classic" tabindex="2" onchange="tellParent(this)" type="text" style="z-index:20000;">
+                    
+                    </select>
+                    
+                    
+                   
+                    
+                </div>
+                <div class="visibleInput" id="unitWrapper">
+                    <label>Unit#:&nbsp;</label>
+                    <input id="txtUnit" tabindex="3" onkeyup= "openInput(event,this,'jobTypeWrapper')" type="text"/>
+                </div>
+                <div class="visibleInput" id="originWrapper"> <label for="selOrigin">Designation:&nbsp;</label>
+                    <select id="selOrigin" class='classic' tabindex="4" onchange="openInput(event,this,'customerNameWrapper','dateWrapper')">
+                        <option value="None"></option>
+                        <option value="On the Lot">On the Lot</option>
+                        <option value="Scheduled">Scheduled</option>
+                        
+                    </select> 
+                </div>
+                <div id="dateWrapper" class="hiddenInput">
+                    <label>Schedule Date: &nbsp;</label>
+                    <input type="text" id="datepicker" tabindex="5">
+                    <br/>
+                    <div id="radioContainer">
+                        <label>AM</label>
+                        <input type='radio' id="radAM" tabindex='6'name='ampm2' value='am'>
+                        <label>PM</label>
+                        <input type='radio' id="radPM" tabindex='7' name='ampm2' value='pm'>
+                    </div> 
+                </div>
+                
+                
+
+                <div class="visibleInput" id="jobTypeWrapper">
+                    <label>Job Type: &nbsp;</label>
+                    <select id="selJobType" class='classic' tabindex="8" onchange="openInput(event,this,'cbWrapper','notesFieldset')">
+                        <option value="None"></option>
+                        <option value="Spring">Spring</option>
+                        <option value="Alignment">Alignment</option>
+                        <option value="Frame">Frame</option>
+                        <option value="King Pin">King Pin</option>
+                        <option value="Check All">Check All</option>
+                    </select> 
+                </div>
+
+            </fieldset>
+           
+            
+
+                <fieldset class="hiddenInput"id="cbWrapper">
+                    <legend>
+                        Optional Job Info: Check all that apply
+                    </legend>
+                    <div class="visibleInput">Cash Customer:
+                        <input type="checkbox" id="cbCash" tabindex="9" onchange="openInput(event,this,'est')"/>
+                    </div>
+                    <div id="est" class="hiddenInput">
+                        <label>Estimated cost:</label>
+                        <input id="txtCost" type="text" tabindex="10"/>
+                    </div>
+                    <div class="visibleInput">
+                        <label>Parts Needed:</label>
+                        <input id="cbParts" type="checkbox" tabindex="11"/>
+                    </div>
+                    <div class="visibleInput">
+                        <label>Approval Needed:</label>
+                        <input id="cbApproval" type="checkbox" tabindex="12"/>
+                    </div>
+                    <div class="visibleInput">
+                        <label>Checked:</label>
+                        <input id="cbChecked" type="checkbox" tabindex="13"/>
+                    </div>
+                    <div class="visibleInput">
+                        <label>Comeback:</label>
+                        <input id="cbComeback"type="checkbox" tabindex="14"/>
+                    </div>
+                    <div class="visibleInput">
+                        <label>Waiting:</label>
+                        <input id="cbWaiting" type="checkbox" tabindex="15"/>
+                    </div>
+                    
+                </fieldset>
+                <fieldset class="hiddenInput" id="notesFieldset">
+                <legend>Notes</legend>
+                <div class="visibleInput" id="notesWrapper">
+                
+                    <textarea id="txtNotes" rows="5" cols="58" tabindex="16" type="text" style="vertical-align:middle;"></textarea>
+                </div>
+            </fieldset>
+                <div id="formButtons" class="hiddenInput">
+                    <input id="frmCancel" type="button" tabindex="19" value="Cancel" onclick="cancelAdd()"/>
+                    <input id="frmReset" type="reset" tabindex="18" value="Reset" onclick="reset()"/>
+                    <input id="frmSubmit" type="button" tabindex="17" value="Add Job"onclick="addJob()"/>
+                </div>
+            
+        
+    </div> 
+</body>
+</html>

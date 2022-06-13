@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    
+    
+    <link rel="stylesheet" type="text/css" media="all" href="../css/login.css">
+    <script type="text/javascript" src="../scripts/login.js"></script>
+	
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	
+    <script src="../scripts/jquery-1.11.3.min.js"></script>
+	<script src="../scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>	
+		
+	
+	
+	 
+     
+		
+		
+	
+	<script>if (window.module) module = window.module;</script>
+</head>
+<body onload = 'focusUsername()'>
+    <h3>Log In</h3>
+    <div id="-message-area"></div>
+    <form>
+    <label class="-user-label">User Name:</label>
+    <input class="-user-input-text" id="user" autofucus><br>
+    <label class="-user-label">Password:</label>
+    <input class="-user-input-text" type="password" id="password"><br>
+    
+        <div id='lsDiv'>
+            <input id="loginSubmit" class="-user-submit" type="button" value="submit" onclick="login()"/>
+        </div>
+    </form>
+<script>$('#user').focus()</script> 
+</body>
+</html>

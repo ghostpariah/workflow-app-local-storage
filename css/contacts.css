@@ -1,0 +1,312 @@
+body{
+    background-color: black;
+    width:500px;
+    height:auto;
+    color: white;
+    font-weight: 400;
+    font-family: "Arial Narrow";
+}
+datalist{
+	display:none;
+	z-index: 900000;
+    visibility: collapse;
+    height: 0px;
+    
+}
+#txtCustomerName{
+    float:left;
+    display:block;
+    margin: auto;
+    margin-left:calc(100%/3);
+}
+#customerNameWrapper{
+    display: none;
+    float:left;
+    
+    width:100%;
+    margin:auto;
+    
+}
+#newContactFormContainer{
+    display:none;
+    position:relative;
+}
+select option :disabled{color:blue;}
+#companyHeader{
+    float:left;
+    clear:both;
+    padding:0;
+    
+    color:#5e81ad;/*rgb(186, 245, 242);*/
+    display:none;
+    
+    width:100%;
+    margin-right:20px;
+}
+label{
+    color:#5e81ad;
+}
+ul li ul > a{
+    font-size:15px;
+    text-decoration: none;
+    text-align: right;
+    float: center;
+}
+#contactsMain{
+    float: left;
+    width: 100%;
+    display: "block";
+    
+    margin-right:20px;
+    
+}
+#contactsHeader h2{
+   
+    color: #5e81ad;/*lightcyan;*/
+    
+}
+.inline-input-group{
+float: left;
+width:100%;
+}
+.input-block{
+    display: inline-block;
+    
+    margin:10px;
+   
+}
+input{
+   
+    border:1px solid #5e81ad;
+    height: 1.25rem;
+    float: left;    
+    padding-left: 5px;
+    margin: auto
+}
+label{
+    float:left;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  
+}
+#vlah{
+    clear:both;
+}
+.addAdditional{
+    float:left;
+    font-size: 28px;
+    
+    vertical-align: middle;
+    border:1px solid black;
+    height:20px;
+}
+ul {
+font-size: 1.4rem;
+color: #5e81ad;/*lightcyan;*/
+list-style: none;
+padding-left: 15px;
+font-weight:200;
+
+}
+ul li{
+    clear: both;
+    border-top: 1px solid #5e81ad;/*lightcyan;*/
+    font-weight: 800;
+}
+ul li ul{
+    clear: both;
+    font-size: 1.15rem;
+    color: #5e81ad;
+    padding-left: 30px;
+    padding-bottom: 10px;
+   
+
+}
+.contactName{
+    float:left;
+    margin: 0 5px 10px 5px;
+}
+ul li ul li{
+    clear: both;
+    
+    list-style: none;
+    font-size: .85em;
+    color:white;
+    list-style-position: outside;
+    padding-left: 15px;
+    border: none;
+    font-weight: 200;
+}
+.actionLink{
+    font-size: .8rem;
+    cursor: pointer;
+    margin: 3px;
+    color: plum;
+    text-decoration-line:none;
+    display:none;
+}
+.actionLink:hover{
+    color: rgb(180, 134, 180);
+
+}
+#currentContacts{
+    width:100%;
+    float:left;
+    
+}
+
+#currentContacts > ul{
+   float:left;
+   width:95%;
+}
+.primary{
+    float:left;
+    
+}
+.indicator{
+    color:red;
+    font-size: .5em;
+}
+.visible{
+    display:block;
+}
+.hidden{
+    display:none;
+}
+.divPrimaryCheckbox{
+    float:left;
+    font-size: .75em;
+    display:none;
+    width:100%;
+}
+.divPrimaryCheckbox label{
+    font-size: 1em;
+    margin-left:5px;
+}
+
+  
+  .actionLink .tooltip {
+    font-size: .75rem;
+    visibility: hidden;
+    width: 120px;
+    background-color: white;
+    color: #5e81ad;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .actionLink:hover .tooltip {
+    visibility: visible;
+  }
+  #buttonContainer{
+      float:left;
+      width:100%;
+      display:block;
+  }
+.contactButton{
+    width: 30px;
+    height:15px;
+    text-align: center;
+    margin:5px 3px 3px 10px;
+    cursor: pointer;
+    border: 1px solid #5e81ad;
+    float:left;
+    padding:2px 10px;
+    font-size:12px;/*.8em;*/
+    color:#5e81ad;
+    
+}
+.contactButton:hover{
+    color:black;
+    background:#5e81ad;
+}
+.smallButtonContainer{
+    float:left;
+    height: 20px;
+    margin-left: 15px;
+    
+}
+#cbPrimary{
+    margin-right: 10px;
+}
+
+.smallButton{
+    width: 30px;
+    height:15px;
+    text-align: center;
+    margin:0px 5px; 
+    cursor: pointer;
+    border: 1px solid #5e81ad;
+    float:left;
+    padding:2px 10px;
+    font-size:12px;/*.8em;*/
+    color:#5e81ad;
+    
+}
+.largeButton{
+    float:right;
+    border:1px solid #5e81ad;
+    background-color:#5e81ad;
+    margin: 3px;;/* */
+    padding:1px 3px;
+    cursor:pointer;
+    color: black;
+    width: 100px;
+    text-align: center;  
+}
+.largeButton:hover{
+    color:white;
+    background: #5e81ad;
+    cursor:pointer;
+}
+.compHeader{
+    float:left;
+    font-size:2em;
+    margin: 10px 10px 10px 0;
+    font-weight: 800;
+    width:100%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+.mainContactButton{
+    float:right;
+    border:1px solid #5e81ad;
+    
+    margin: 3px;;/* */
+    padding:1px 3px;
+    cursor:pointer;
+    
+    width: calc(90%/3);
+    text-align: center;
+}
+.mainContactButton:hover{
+    color:black;
+    background: #5e81ad;
+    cursor:pointer;
+}
+.buttonSelected{    
+    background-color: #5e81ad;    
+    color:black;    
+}
+.buttonUnselected{    
+    background-color: black;    
+    color:#5e81ad;    
+}
+
+.nameInput{
+    width:100px;
+    margin: 5px 5px 5px 5px;
+    float:left;
+}
+.wrapper{
+    width:100%;
+    float:left;
+}
+
+
