@@ -22,7 +22,7 @@
     "sqlite3": "^5.0.3"
   },
   "build": {
-    "appId": "com.ghostPariah.workflowApp",
+    "appId": "com.ghostPariah.workflowAppLocal",
     "productName": "Workflow App",
     "win": {
       "target": "nsis-web",
@@ -34,5 +34,5 @@
       "installerIcon": "images/logo.ico"
     }
   },
-  "repository": "https://github.com/ghostpariah/thunder-canyon.git"
+  "repository": "https://github.com/ghostpariah/workflow-app-local-storage.git"
 }

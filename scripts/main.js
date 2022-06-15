@@ -161,7 +161,8 @@ async function checkForDB(db){
     const info = await fsp.stat(db)
     }catch(e){
         //updateWin.webContents.send('new-database')
-        return createDatabase(db)
+        
+        return await createDatabase(db)
     }
 }
 
@@ -227,7 +228,7 @@ async function readyApp(){
 
 
 //function to create database if it doesn't exist
-function createDatabase(file){
+async function createDatabase(file){
     console.log('createDatabase triggered')
     //build sql statements
     let customersSQL = `CREATE TABLE "customers" (
@@ -380,10 +381,7 @@ function readyFolders(){
     try{
         fs.readdir(logLocation, function(err, data) {
             if(err){
-                console.log(err)
-            }
-            if (data.length == 0) {
-                
+                console.log('error reading logloaction')
                 // create activity log
                 fs.closeSync(fs.openSync(activityLog,'w'))
                 // create error log
@@ -392,6 +390,8 @@ function readyFolders(){
                 fs.mkdirSync(logArchive, {
                     recursive: true
                 });  
+                
+             
     
             } else {
                 
@@ -2939,38 +2939,38 @@ async function backupDB(){
         try{
         switch(hour){
             case 7:
-                whichDB = 'v:/backup/backup07.db'
+                whichDB = `${backupFolder}backup07.db`
                 break;
             case 8:
-                whichDB = 'v:/backup/backup08.db'
+                whichDB = `${backupFolder}backup08.db`
                 break;
             case 9:
-                whichDB = 'v:/backup/backup09.db'
+                whichDB = `${backupFolder}backup09.db`
                 break;
             case 10:
-                whichDB = 'v:/backup/backup10.db'
+                whichDB = `${backupFolder}backup10.db`
                 break;
             case 11:
-                whichDB = 'v:/backup/backup11.db'
+                whichDB = `${backupFolder}backup11.db`
                 break;
             case 12:
-                whichDB = 'v:/backup/backup12.db'
+                whichDB = `${backupFolder}backup12.db`
                 break;
             case 13:
-                whichDB = 'v:/backup/backup13.db'
+                whichDB = `${backupFolder}backup13.db`
                 break;
             case 14:
-                whichDB = 'v:/backup/backup14.db'
+                whichDB = `${backupFolder}backup14.db`
                 break;
             case 15:
-                whichDB = 'v:/backup/backup15.db'
+                whichDB = `${backupFolder}backup15.db`
                 break;
             case 16:
                 
-                whichDB = 'v:/backup/backup16.db'
+                whichDB = `${backupFolder}backup16.db`
                 break;
            default:
-               whichDB = 'v:/backup/backup20.db'
+               whichDB = `${backupFolder}backup20.db`
                 break;
         }
     }catch(e){
@@ -2982,7 +2982,7 @@ async function backupDB(){
          
     })
     if(objStats){
-        //let whichDB = (currentTime > '11:06:00 PM')?'v:/backup1.db':'v:/backup2.db'
+        
         console.log(current.toLocaleTimeString('en-US',{hourCycle:'h23'}))
         
         
