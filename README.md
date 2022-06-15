@@ -8,11 +8,6 @@ Workflow App is an application created for managing the workflow of truck repair
 - Customer Contacts
 - Reporting 
 
-Data (logs, database, and text file for whiteboard) is stored on a network drive accessible by all computers. A network drive labeled v: must be mapped in order to function. If using to sample program on a local machine, comment out current rootStorage variable and uncomment the app.getPath defined variable.
-```javascript
-const rootStorage = app.getPath('userData')
-//const rootStorage = 'v:/'
-```
 ### Technology Used
 - Javascript
 - Node.js
@@ -20,3 +15,22 @@ const rootStorage = app.getPath('userData')
 - SQLite3
 - HTML
 - CSS
+
+### Basic functionality
+Log in by selecting Log In button on the right of page
+
+![Log In](/images/login.png)
+
+> Initial log in is
+User Name: admin
+Password: password
+
+Create a new job by clicking on the 'Add New' button.
+
+![AddNew](/images/addNew.png)
+
+If it is a scheduled job, it will show in the Schedule Glimpse section, and the All Scheduled, and the Calendar of the Scheduled section.
+
+If it is an On the Lot job, it will show in the main On the Lot section.
+
+Jobs can be moved by drag and drop or by right clicking on the the job and selecting event.
