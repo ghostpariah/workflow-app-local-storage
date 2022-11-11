@@ -37,8 +37,8 @@ const appStartDay = today
  * If going to use as a single instance on a computer without mapping to a drive on the server,
  * set rootStorage to the local storage using electron's app.getPath('userData')
  */
-//const rootStorage = app.getPath('userData')
-const rootStorage = 'v:/'
+const rootStorage = app.getPath('userData')
+//const rootStorage = 'v:/'
 
 const backupFolder = path.join(rootStorage,'/backup/')
 const dataFolder = path.join(rootStorage, `/data/`)
