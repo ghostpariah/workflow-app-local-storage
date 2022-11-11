@@ -6,115 +6,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports</title>
     <link rel="stylesheet" type="text/css" href="../css/reports.css">
-    
+    <link rel="stylesheet" type="text/css" href="../css/formComponents.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&family=Quicksand:wght@500&family=Caveat&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src='../scripts/dbCon.js'></script>
     <script src="../scripts/jquery-1.11.3.min.js"></script>
     <script src="../scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-    <script src="../scripts/reports.js"></script>
+    <script src="../scripts/reports.js" defer></script>
     
     <script>if (window.module) module = window.module;</script>
 
 </head>
 <body onload="loadModal()">
-  <div id='mainMenu' class='ribbon'>
+  <div id='mainMenu'>
        
       <span id='option1' class='mainOption unchosen' onclick="toggleVisibility(this)">User Activity</span>      
-      <span id='option2' class='mainOption unchosen' onclick="toggleVisibility(this)">Error Log</span>
+      <span id='option2' class='mainOption unchosen' onclick="toggleVisibility(this)">On the Lot</span>
       <span id='option3' class='mainOption unchosen' onclick="toggleVisibility(this)">No Shows</span>      
       <span id='option4' class='mainOption unchosen' onclick="toggleVisibility(this)">EOD</span>
       <span id='option5' class='mainOption unchosen' onclick="toggleVisibility(this)">History</span>
+      
   </div>
   <div id='ribbon1' class= 'ribbon hidden'>
    
 
 
     <div id="dateRange" class="ribbonAsset">
-      <label>Search Date:</label><input type="text" id="reportStartDate">
+      <input type="text" id="reportStartDate" class="reportFormInput" placeholder="click to choose date">
       
       
     </div>
     <div id="activitySearch" class="ribbonAsset">
-      <input type="text" id="searchCriteria">
-      <span id="searchInputButton" class="searchInputButton" onclick="search('activity')">search</span>
+      <input type="text" id="searchCriteria" class="reportFormInput" placeholder="search">
+      
     </div>
     
   </div>
   
   <div id='ribbon2' class= 'ribbon hidden'>
+    <input type="button" id="printLot" value="PRINT">PRINT</input>
     
   </div>
   <div id='ribbon3' class= 'ribbon hidden'>
     <div id="activitySearchNS" class="ribbonAsset">
+      <span id="showAllNS" class ="showAll" onclick="displayNoShows()">show all</span>
       
-      <input type="text" id="searchCriteriaNS">
-      <span id="searchInputButtonNS" class ="searchInputButton" onclick="search('noshow')">search</span>
+      <input type="text" id="searchCriteriaNS" class="reportFormInput" placeholder="search">
+      
     </div>
   </div>
   <div id="ribbon4" class= 'ribbon hidden'>
     
-    <div id="reportFormWrapper">
+    
         
         
         <form id="reportForm">
-          <div class="inputWrapper">
-            <label class="rfLabel">Date:</label>
-            <input class="reportFormInput" type="text" id="datepickerReport" >
-            <label class="rfLabel">ACH: </label><input type="checkbox" id="cbACH" onchange="handleCheck(this)">
-            <!--
-            <input class="reportFormInput" type="text" id="inpACH" placeholder="ex. 650.65 no $" onblur="createEODitem(this,'ach')"/>
-            <br/>
-            <label class="rfLabel">From: </label>
-            <input class="reportFormInput" type="text" id="inpFrom" placeholder="Customer Name" onblur="createEODitem(this,'from')"/>
-            <br/>
-           -->
-           <div id="achBox">
+          <div id="reportFormWrapper">
+          <div class="sectionWrapper">
+              <div class="inputWrapper">
+                <label class="rfLabel">Date</label>
+                <input class="reportFormInput" tabindex="7" type="text" id="datepickerReport" >
+              </div>
+              <div class="inputWrapper">
+              <label class="rfLabel">Batch </label>
+              <input class="reportFormInput" name="batch" type="text" id="inpBatch" tabindex="1" placeholder="batch total" onblur="createEODitem(this,'batch')"/>
             </div>
-          </div>  
-          <div class="inputWrapper">  
-            
-            <label class="rfLabel">Batch Total: </label>
-            <input class="reportFormInput" name="batch" type="text" id="inpBatch" placeholder="0" onblur="createEODitem(this,'batch')"/>
-            <br />
-            
            
-            <label class="rfLabel">Daily Total: </label>
-            <input class="reportFormInput" type="text" id="inpDaily" placeholder="0" onblur="createEODitem(this,'daily')"/>
-            <br/>
-          </div>
-          
-          <div class="inputWrapper">
-            <label class="rfLabel">City of Columbus: </label>
-            <input class="reportFormInput" type="text" id="inpCity" placeholder="0"  onblur="createEODitem(this,'city')"/>
-            <br />
-            <label class="rfLabel">Director Series Total: </label>
-            <input class="reportFormInput" type="text" id="inpDirector" placeholder="0" onblur="createEODitem(this,'director')"/>
-            <br/>
-            <input id="btnReport" class="btnReport" type="button" value="PRINT"/>
-          </div>
+              
+              
+          </div> 
+          <!--
+          <div class="sectionWrapper">  
+           
             
+          </div>
+          -->
+          <div class="sectionWrapper">
+            <div class="inputWrapper">
+              <label class="rfLabel">City of Columbus </label>              
+              <input class="reportFormInput" type="text" id="inpCity" tabindex="2" placeholder="0"  onblur="createEODitem(this,'city')"/>              
+              
+            </div>
+            <div class="inputWrapper">
+              <label class="rfLabel">Daily </label>
+              <input class="reportFormInput" type="text" id="inpDaily" tabindex="3" placeholder="0" onblur="createEODitem(this,'daily')"/>
+            </div>
+           
+            
+          </div>
+          <div class="sectionWrapper">
+            <div class="inputWrapper">
+              <label class="rfLabel">Director Series </label>
+              <input class="reportFormInput" type="text" id="inpDirector" tabindex="4" placeholder="0" onblur="createEODitem(this,'director')"/>
+            </div>
+            <div class="cbWrapper">
+                <label class="cbLabel">ACH </label>
+                <div type="button" id="pb" class="plusButton plus" tabindex="5" onclick="handleCheck(this)"></div>            
+                
+            </div>
+              
+              <div id="achBox"></div>
+          </div> 
+          
+          
+          </div>
+          <div class="buttonWrapper">
+              <input id="btnReport" class="btnReport" tabindex="6" type="button" value="PRINT"/>
+            </div>
         </form>
     </div>
-  </div>
+  
   <div id='ribbon5' class= 'ribbon hidden historyRibbon'>
     <div id="activitySearchHS" class="ribbonAsset">
       <div class="visibleInput" id="customerNameWrapper">
                     
-          <label>Customer:&nbsp;</label>                    
-          <input id="txtCustomerName" class="classic" tabindex="1" list="lstCustomer" onfocus="fillCustomerDataList()" type="text" style="z-index:20000;"/>
+                              
+          <input id="txtCustomerName" class="reportFormInput" tabindex="1" list="lstCustomer" onfocus="fillCustomerDataList()" placeholder="choose customer" type="text" style="z-index:20000;"/>
           
           <datalist id="lstCustomer" class="classic">
               
           </datalist>
       </div>
       <div id='searchContainer'class="searchContainer">
-        <input type="text" id="searchCriteriaHS">
-        <span id="searchInputButtonHS" class ="searchInputButton" onclick="search('noshow')">search</span>
+        <input type="text" id="searchCriteriaHS" placeholder="search">
+       
       </div>
     </div>
   </div>
 
-  <div id='searchResult' class="resultsContainer"></div>
+  <div id='searchResult'>
+    
+  </div>
   <div id="reportResult" class= 'resultsContainer'>
   </div>
   

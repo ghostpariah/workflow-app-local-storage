@@ -47,8 +47,8 @@ setTimeout(()=>{
         
 }
         function verifyUsername(args1){
-            const electron1  = require('electron')
-            const ipc = electron1.ipcRenderer
+            //const electron1  = require('electron')
+            //const ipc = electron1.ipcRenderer
             
             let unSucc = false
             let ma = document.getElementById('-message-area')

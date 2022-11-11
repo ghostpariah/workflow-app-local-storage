@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Job</title>
+    <title>Edit Job</title>
     
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
     <link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
     <link rel="stylesheet" type="text/css" media="all" href="../css/addJob.css">
     <link rel="stylesheet" type="text/css" media="all" href="../css/components.css">
     <link rel="stylesheet" type="text/css" media="all" href="../css/formComponents.css">
 
     <script src='../scripts/dbCon.js' defer></script>
-    <script src='../scripts/addJob.js' defer></script>
+    <script src='../scripts/edit.js' defer></script>
     
     <script src='../scripts/createComponent.js' defer></script>
     <!--<script src="../scripts/calendar_script.js"></script>-->
@@ -37,7 +37,9 @@
             
                          
             <div class="componentBlock">    
-                
+                <div id="dateInWrapper" class="visibleInput">
+                   
+                </div>
                 <div class="visibleInput" id="originWrapper">
                     
                 </div>
@@ -52,9 +54,7 @@
                 <div id="customerComboBoxContainer" class="visibleInput">
                 </div>               
                 
-                <div class="visibleInput" id="unitWrapper">
-                    
-                </div>
+                
                 
                
                 
@@ -63,6 +63,9 @@
             
             
             <div class="componentBlock">
+                <div class="visibleInput" id="unitWrapper">
+                    
+                </div>
                 <div class="visibleInput" id="unitTypeWrapper">
                     
                 </div>
@@ -90,20 +93,36 @@
                         <label>Cash Customer</label>
                         <input type="checkbox" id="cbCash" tabindex="11"/>
                     </div>
-                   
+                    
+                    
+                    
+                    
                     <div class="visibleInput cb">
                         <label>Waiting</label>
                         <input id="cbWaiting" type="checkbox" tabindex="12"/>
                     </div>
-                   
-            </div>   
+
+                    <div class="cb visibleInput">
+                        <label>Checked:</label>
+                        <input id="cbChecked" type="checkbox" tabindex="13"/>
+                    </div>
+                    
+                    <div id="OTL_SCHEDULED" class="cb visibleInput">
+                        <label>On the Lot & Scheduled:</label>
+                        <input id="cbOTL_scheduled"type="checkbox" tabindex="14" onchange="openOTLandScheduled(event,this,'dateWrapper_OTL_SCHEDULED')"/>
+                    </div>
+                    <div id="dateWrapper_OTL_SCHEDULED" class="hiddenInput">
+                       
+                    </div>
+                    
+                 </div>   
                 
-                
+               
             <div class="buttonBlock">
                 <div id="formButtons" class="hiddenInput">
-                    <input id="frmSubmit" type="button" class="btn" tabindex="13" value="Submit"onclick="addJob()"/>                    
-                    <input id="frmReset" type="button" class="btn" tabindex="14" value="Reset" onclick="window.location.reload()"/>
-                    <input id="frmCancel" type="button" class="btn" tabindex="15" value="Cancel" onclick="cancelAdd()"/>
+                    <input id="frmSubmit" type="button" class="btn" tabindex="17" value="Submit"onclick="updateJob()"/>                    
+                    
+                    <input id="frmCancel" type="button" class="btn" tabindex="18" value="Cancel" onclick="cancelAdd()"/>
                     
                 </div>
             </div>

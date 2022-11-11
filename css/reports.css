@@ -1,46 +1,114 @@
 body{
-    color:white;
-    background-color: black;
+    color:#5e81ad;
+    background-color: black;/*#0a073d;*/
     font-family:'Arial Narrow', Arial, Helvetica, sans-serif;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
 }
 label{
     margin-right:5px;
+    
 }
 .ribbon{
+    justify-content: left;
     width:100%;
-    height:auto;
-    float: left;
-    
+    min-height: 50px;
+    /* float: left; */
+    background-color: #5e81ad;
     margin-bottom:2px;
     text-align: center;
+    border-radius: 5px 5px 0 0;
 }
+.flexBetween{
+    display:flex;
+    justify-content: space-between;
+}
+.flexCenter{
+    display:flex;
+    justify-content: center;
+}
+
 .historyRibbon{
     height: 40px;
 }
+#mainMenu{
+    display:flex;
+    align-items:baseline;
+    justify-content: space-around;
+    width:100%;
+    height:auto;
+    
+    
+    
+    text-align: center;
+}
 .mainOption{
+    display:flex;
+    justify-content: center;
+    align-items: center;
     width: calc(90%/5);
     font-size: 25px;
     float: left;
     height: 35px;
-    margin: 5px;
-    border: 1px solid #5e81ad;
+    /* margin: 5px; */
+    /* border-left: 1px solid #5e81ad;
+    border-top: 1px solid #5e81ad;
+    border-right: 1px solid #5e81ad; */
     cursor: pointer;
-    
+    border-radius: 5px 5px 0 0;
 }
+/* #ribbon4 input{    
+    border-radius: 5px; 
+    
+} */
+
+/* input{
+    border-radius: 5px;
+}
+button{
+    border-radius: 5px;
+} */
+/* input[type=text]{
+    border: none;
+    background-color: #f0f4fa;
+     
+}
+input[type=text]:focus-within{
+   background-color: white;  
+   color:#0a073d;
+   outline-color: dodgerblue;
+   outline-width: 1px;
+} */
+
+
+/* #ribbon4 input[type=button]:focus-within{
+     
+    
+    border: 2px solid white;
+ }
+ #ribbon4 input[type=button]:hover{
+     
+    
+    border: 2px solid white;
+ } */
+
 #customerNameWrapper{
-    float:left;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 50px;
 }
 
 .chosen{
     color: white;    
-    
+    font-weight:bold;
     background-color: #5e81ad;
 
 }
 .unchosen{
-    color: #5e81ad;    
-   
-    background-color: black;
+    color: aliceblue;    
+    
+    background-color: #335f94;
 
 }
 select {
@@ -54,7 +122,8 @@ select {
     margin-top: 3px;
 }
 .ribbonAsset{
-    float:left;
+    display:flex;
+    align-items: center;
     width:100%;
     
     margin: 10px 5px 5px 5px;
@@ -63,14 +132,34 @@ select {
     display: none;
 }
 .visible{
-    display:block;
+    display:flex;
 }
 .resultsContainer{
-    float:left;    
-    color:#5e81ad;;
+    display:flex; 
+    flex-direction: column;
+    background-color: whitesmoke;  
+    color:#1b1a1a;
     width: 100%;
+    /* padding: 10px; */
+    box-sizing: border-box;
+}
+.resultItem{
+    width: 100%;
+    height: 3em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.resultItem:nth-child(odd){
+    background: rgb(216, 215, 215);
+}
+#activitySearchHS{
+    justify-content: space-between;
 }
 #searchResult{
+    
     border: 1px solid #5e81ad;
     margin-bottom: 10px;
     background-color: whitesmoke;
@@ -80,28 +169,33 @@ select {
     text-align:center;
 }
 
-.searchInputButton{
+ .showAll{
     background-color: #5e81ad;
     color:white;
     cursor: pointer;
     padding: 0 3px 3px 3px;
-}
+    text-decoration: underline;
+} 
 #activitySearch{
-    width:50%;
+    width:min(25% 250px);
     display: none;
     text-align:right;
-    float: right;
+    box-sizing: border-box;
     height: auto;
 }
 #activitySearchNS{
-    
-    
+    display:flex;
+    justify-content: left;
+    gap: 20px;
+    width:auto;
     text-align:left;
     float: left;
     height: auto;
 }
 .searchContainer{
-    float:right;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     display: none;
     height:40px;
 }
@@ -120,11 +214,9 @@ select {
     /* reset */
   
     margin: 0;      
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    
   }
   
   
@@ -163,31 +255,90 @@ select {
     border-color: grey;
     outline: 0;
   }
-.reportFormInput{
+#reportForm{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:flex-start;
+    width: 100%;
+}
+#reportFormWrapper{
+    display:flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    flex-direction:row;
+    width: 100%;
+}
+/* .reportFormInput{
     height: 2em;
     float:left;
-    width:47%;
+    width:75%;
     margin:2px;
-}
+} */
 .rfLabel{
-    width: 47%;
-    float:left;
-    text-align: right;
-    margin:2px;
+    width: 75%;
+    /* float:left; */
+    text-align: left;
+    /* margin:2px; */
+    margin-left:5px;
+    color:whitesmoke;
+}
+/* label for ACH checkbox needs different styling than other form components */
+.cbLabel{
+    margin-left:5px;  
+    text-align: right;    
+    color:whitesmoke;
+}
+.sectionWrapper{
+    display:flex;
+    justify-content: left;
+    flex-direction: column;
+    --widthA: calc(99% / 3);
+    width: calc(var(--widthA) - 30px);
+    min-width: 200px;
+    row-gap: 10px;
+    /* padding-left:10px; */
+    box-sizing: border-box;
 }
 .inputWrapper{
-    width: calc(99%/3);
-    margin-top:10px;
-    float:left;
+    display:flex;
+    flex-direction:column;
+    align-items: left;
+    width: 100%; 
+    /* margin: 10px;  */
+    row-gap: 5px;
+    box-sizing: border-box;
     
 }
-.btnReport{
-    background-color: #5e81ad;
-    height: 2.5em;
-    float:right;
-    width:47%;
-    margin: 25px 5px 5px 0; 
+.cbWrapper{
+    display:flex;
+    flex-direction:row;
+    justify-content: left;
+    width: 100%;  
+    margin-bottom:-3px;
+    /* margin: 10px;  */
+    row-gap: 5px;
 }
+.buttonWrapper{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    width: 100%;  
+    justify-content: center;
+}
+/* .btnReport{
+    background-color:#5ead8a;
+    color: whitesmoke;
+    height: 2.5em;
+    border: none;
+    width:auto;
+    margin: 25px 0px 10px 0; 
+    cursor: pointer;
+    outline:none;
+    padding: 0 20px;
+    font-size: 1.1em;
+} */
+
 .EODprintItem{
     font-size: 2em;
     width: 100%;
@@ -210,12 +361,30 @@ select {
     width:100%;
     
 }
+.achWrapper{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    justify-content: left;
+    column-gap:5px;
+    align-items: center;
+    /* padding-right:10px; */
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    /* margin-top:5px; */
+    
+    
+}
 #achBox{
-    float:left;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: right; */
+    
     height:auto;
     width:100%;
     
 }
+
 .achLabel{
     width: 64%;
     float:left;
@@ -224,8 +393,103 @@ select {
     
 }
 .achInput{
-    width: 30%;
+    width: 50%;
     height: 2em;
-    float:left;
+    border:none;
+    outline-color: dodgerblue;
     
 }
+
+.addText{
+    display: flex;
+    aspect-ratio: 1;
+    height:1em;
+    justify-content: center;
+    align-items: center;
+    font-size:25px;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* lot report sections */
+.mainLotReportHeader{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    width:100%;
+    height:50px;
+    font-family: 'Manrope', serif;
+    font-size: 3em;
+    color: rgb(31, 30, 30);
+    border-bottom: 1px solid black;
+
+}
+.reportSection{
+    width:100%;
+    margin-bottom: 20px;
+}
+.reportSection:nth-child(odd){
+    border-top:1px solid rgb(31, 30, 30);
+}
+.sectionHeader{
+    display:flex;
+    width:100%;
+    justify-content:left;
+    font-family: 'Manrope', serif;
+    font-size: 2em;
+    color: rgb(31, 30, 30);
+    margin-left: 10px;
+
+}
+.lineItem{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    width:100%;
+    height:30px;
+    padding-left:15px;
+    box-sizing:border-box;
+    gap:30px;
+    
+}
+.lineItem:nth-child(even) {background: rgb(216, 215, 215)}
+
+.checkbox{
+    display:flex;
+    background-color:white;
+    border:1px solid black;
+    width:1em;
+    height:1em;
+
+}
+.lineItemCompany{
+    font-weight:500;
+    margin-left:-20px;
+    width:20%;
+}
+.lineItemSection{
+    width: 20%;
+}
+/* #printLot{
+    /* width:100px;
+    height:50px; 
+} */
+.no-show-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 75px;
+}
+.no-show-data{
+    display:flex;
+    align-items: center;
+    width: 80%;
+   
+}
+#reportResult >p{
+    margin-left: 10px;
+}
+.no-show-container:nth-child(even) {background: rgb(216, 215, 215)}

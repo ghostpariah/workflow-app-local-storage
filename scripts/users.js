@@ -1,24 +1,24 @@
 
-const elect = require('electron')
-const { remote } = require('electron')
+//const elect = require('electron')
+//const { remote } = require('electron')
 
-const ipcUser = elect.ipcRenderer
+//const ipcUser = elect.ipcRenderer
 const pathUser = require('path')
 const urlUser = require('url')
 let users
 
 window.onload = () =>{
-    users = ipcUser.sendSync('get-users','useradmin')
+    users = ipc.sendSync('get-users','useradmin')
    
     fillSections(users)
 }
 $('selUser').on({
     change : ()=>{
-        let user = ipcUser.sendSync('get-user')
+        let user = ipc.sendSync('get-user')
     }
 })
 
-ipcUser.on('user-updated', (event,args)=>{
+ipc.on('user-updated', (event,args)=>{
     
 })
 
@@ -212,7 +212,7 @@ function fillSections(users){
         submitButton.addEventListener('click', event =>{
            
             for(i=0;i<arrChanges.length;i++){
-                ipcUser.send('edit-users',arrChanges[i])
+                ipc.send('edit-users',arrChanges[i])
             }
         })
         document.getElementById('userWrapper').appendChild(submitButton)
@@ -275,7 +275,7 @@ function displaySection(args){
 function deleteUser(args){
     let selected = $('#selDeleteUser :selected');
     let id=(selected.attr('id').substr(2))
-    users = ipcUser.sendSync('delete-user', id)	
+    users = ipc.sendSync('delete-user', id)	
     fillSections(users)
 }
 
@@ -290,7 +290,7 @@ function createUser(){
     ma.innerHTML=""
     
     let userExists = false
-    userExists = ipcUser.sendSync('check-for-user',unEl)
+    userExists = ipc.sendSync('check-for-user',unEl)
     
     
     if (unEl == ""){
@@ -314,7 +314,7 @@ function createUser(){
         
         document.getElementById('userWrapper').innerHTML =""
         document.getElementById('frmNewUser').reset()
-        fillSections(ipcUser.sendSync('create-user', userData))
+        fillSections(ipc.sendSync('create-user', userData))
         
        
     }

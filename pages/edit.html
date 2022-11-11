@@ -6,7 +6,7 @@
     <title>Edit Job</title>
     
     <link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../css/edit.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/addJob.css">
     
     <script src="../scripts/fillContacts.js"></script>
     
@@ -23,8 +23,31 @@
                 <legend>
                     Required Job Info
                 </legend>
+                <div id="dateWrapper" class="visibleInput">
+                    <label>Date In: &nbsp;</label>
+                    <input type="text" id="datepickerIn" tabindex="5">
+                </div>
+                <div class="visibleInput" id="originWrapper"> <label for="selOrigin">Designation:&nbsp;</label>
+                    <select id="selOrigin" class='classic' tabindex="4">
+                        <option value="None"></option>
+                        <option value="On the Lot">On the Lot</option>
+                        <option value="Scheduled">Scheduled</option>
+                        
+                    </select> 
+                </div>
+                <div id="dateWrapperSch" class="visibleInput">
+                    <label>Schedule Date: &nbsp;</label>
+                    <input type="text" id="datepicker" tabindex="5">
+                    <br/>
+                    <div id="radioContainer">
+                        <label>AM</label>
+                        <input type='radio' id="radAM" tabindex='6'name='ampm2' value='am'>
+                        <label>PM</label>
+                        <input type='radio' id="radPM" tabindex='7' name='ampm2' value='pm'>
+                    </div> 
+                </div>
                 
-                <span class="visibleInput" id="customerNameWrapper">
+                <div class="visibleInput" id="customerNameWrapper">
                     
                     <label>Customer Name:&nbsp;</label>
                     
@@ -33,8 +56,9 @@
                     <datalist id="lstCustomer" class="classic">
                         
                       </datalist>
-                </span>
-                <span class="visibleInput" id="custNameWrapper">
+                      
+                </div>
+                <div class="visibleInput" id="custNameWrapper">
                     
                     <label for="txtContacts">Contacts:&nbsp;</label>
                     
@@ -46,34 +70,16 @@
                     
                    
                     
-                </span>
-                <span class="visibleInput" id="unitWrapper">
+                </div>
+                <div class="visibleInput" id="unitWrapper">
                     <label>Unit#:&nbsp;</label>
                     <input id="txtUnit" tabindex="3"  type="text"/>
-                </span>
-                <span class="visibleInput" id="originWrapper"> <label for="selOrigin">Job Status:&nbsp;</label>
-                    <select id="selOrigin" class='classic' tabindex="4" >
-                        <option value="None"></option>
-                        <option value="On the Lot">On the Lot</option>
-                        <option value="Scheduled">Scheduled</option>
-                        
-                    </select> 
-                </span>
-                <span id="dateWrapper" class="visibleInput">
-                    <label>Schedule Date: &nbsp;</label>
-                    <input type="text" id="datepicker" tabindex="5">
-                    <br/>
-                    <span>
-                        <label>AM</label>
-                        <input type='radio' id="radAM" tabindex='6'name='ampm2' value='am'>
-                        <label>PM</label>
-                        <input type='radio' id="radPM" tabindex='7' name='ampm2' value='pm'>
-                    </span> 
-                </span>
+                </div>
+               
                 
                 
 
-                <span class="visibleInput" id="jobTypeWrapper">
+                <div class="visibleInput" id="jobTypeWrapper">
                     <label>Job Type: &nbsp;</label>
                     <select id="selJobType" class='classic' tabindex="8" >
                         <option value="None"></option>
@@ -83,7 +89,7 @@
                         <option value="King Pin">King Pin</option>
                         <option value="Check All">Check All</option>
                     </select> 
-                </span>
+                </div>
 
             </fieldset>
            
@@ -93,52 +99,68 @@
                     <legend>
                         Optional Job Info: Check all that apply
                     </legend>
-                    <span class="visibleInput">Cash Customer:
+                    <div class="visibleInput">Cash Customer:
                         <input type="checkbox" id="cbCash" tabindex="9" />
-                    </span>
+                    </div>
+                    <!--
                     <div id="est" class="visibleInput">
                         <label>Estimated cost:</label>
                         <input id="txtCost" type="text" tabindex="10"/>
                     </div>
-                    <span class="visibleInput">
+                    -->
+                    <div class="visibleInput">
                         <label>Parts Needed:</label>
                         <input id="cbParts" type="checkbox" tabindex="11"/>
-                    </span>
-                    <span class="visibleInput">
+                    </div>
+                    <div class="visibleInput">
                         <label>Approval Needed:</label>
                         <input id="cbApproval" type="checkbox" tabindex="12"/>
-                    </span>
-                    <span class="visibleInput">
+                    </div>
+                    <div class="visibleInput">
                         <label>Checked:</label>
                         <input id="cbChecked" type="checkbox" tabindex="13"/>
-                    </span>
-                    <span class="visibleInput">
-                        <label>Comeback:</label>
-                        <input id="cbComeback"type="checkbox" tabindex="14"/>
-                    </span>
-                    <span class="visibleInput">
+                    </div>
+                   
+                    <div class="visibleInput">
                         <label>Waiting:</label>
                         <input id="cbWaiting" type="checkbox" tabindex="15"/>
-                    </span>
-                    <span class="visibleInput">
+                    </div>
+                    <div class="visibleInput">
                         <label>No-Show:</label>
                         <input id="cbNoShow" type="checkbox" tabindex="16"/>
-                    </span>
-                    
+                    </div>
+                    <div id='OTL_wrapper' class="visibleInput">
+                        <label>On the Lot & Scheduled:</label>
+                        <input id="cbComeback"type="checkbox" tabindex="14"/>
+                    </div>
+                    <div id="dateWrapper_OTL_SCHEDULED" class="hiddenInput">
+                        <label>Scheduled Date: &nbsp;</label>
+                        <input type="text" id="datepickerOTL" tabindex="17" placeholder="mm/dd/yyyy" pattern="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
+                        <br/>
+                        <div id="radioContainer">
+                            <label>AM</label>
+                            <input type='radio' id="radAM_OTL" tabindex='18'name='ampmOTL' value='am'>
+                            <label>PM</label>
+                            <input type='radio' id="radPM_OTL" tabindex='19' name='ampmOTL' value='pm'>
+                        </div> 
+                    </div>
+                    <div id="wrapperOTL" class="hiddenInput">
+                        <div id="OTL_message" class="message">blah</div>
+                    </div>
                 </fieldset>
                 <fieldset class="visibleFieldset" id="notesFieldset">
                 <legend>Notes</legend>
-                <span class="visibleInput" id="notesWrapper">
+                <div class="visibleInput" id="notesWrapper">
                 
                     <textarea id="txtNotes" rows="6" cols="49" tabindex="16" type="text" style="vertical-align:middle;"></textarea>
-                </span>
+                </div>
             </fieldset>
-                <span id="formButtons" class="visibleInput">
+                <div id="formButtons" class="visibleInput">
                     <input class= "btn" id="frmSubmit" type="button" tabindex="17" value="Save Changes"onclick="updateJob()"/>
                     <input class= "btn" id="frmCancel" type="button" tabindex="19" value="Cancel" onclick="cancelAdd()"/>
                     
                     
-                </span>
+                </div>
             
         </form>
     </div> 

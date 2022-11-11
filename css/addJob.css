@@ -1,11 +1,49 @@
 body{
-    width:420px;
-    background-color: black;
-    color:#5e81ad;
-    font-family: 'Arial Narrow';
+  margin:auto;
+    width:900px;
+    background-color: #5e81ad;
+    color:white;
+    
+    font-family: 'Manrope', 'Arial Narrow';
+    margin:0;
+    padding:0;
 }	
+@media (-webkit-device-pixel-ratio: 1.5) { 
+  body{
+    font-size:12px;
+  }
+}
+#addBlock{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width:100%;/*528px;*/
+  box-sizing: border-box;
+}
+.componentBlock{
+  display:flex;
+  flex-direction: column;
+  justify-content: right;
+  gap:10px;
+  margin-top: 20px;
+  min-width: 256px;
+  /* width: 30%; */
+}
+.buttonBlock{
+  display:flex;
+  justify-content: center;
+  width:100%;
+  margin-top: 100px;
 
-
+}
+.cb > label:after{
+  content: '';
+  margin-left:10px;
+}
+#notesWrapper{
+  display:flex;
+  flex-direction:column;
+}
 #custNameWrapper  ul{
     list-style: none;
     color:rgb(136, 197, 250);
@@ -16,39 +54,30 @@ body{
     margin-block-start: 0;
 }
 #radioContainer{
+  display:flex;
+  justify-content: right;
   margin-top: 10px;
   height: 25px;
 }
-input[type='text'] {
+#cbWrapper{
+  display:flex;
+  flex-direction: column;
+  justify-content: right;
+}
+label:not(.ampmWrapper > label){
+  text-shadow: 1px 1px black;
+}
 
-    /* styling */
-    background-color: white;
-    border: thin solid blue;
-    border-radius: 4px;
-    display: inline-block;
-    font: inherit;
-    line-height: 1.5em;
-    padding: 0.5em 3.5em 0.5em 1em;
-    text-transform: uppercase;
-  
-    /* reset */
-  
-    margin: 0;      
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
   input[type='checkbox'] {
 
     /* styling */
     background-color: white;
     border: thin solid blue;
-    border-radius: 4px;
+    border-radius: 2px;
     display: inline-block;
-    font: inherit;
-    line-height: 1.5em;
+    /* font: inherit; */
+    height: .5em;
+    font-size:.5em;
     padding: 0.5em 0.5em 0.5em 0.5em;
   
     /* reset */
@@ -57,21 +86,21 @@ input[type='text'] {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    /* -webkit-appearance: none;
+    -moz-appearance: none; */
   }
-  input[type='checkbox']:checked{
+  /* input[type='checkbox']:checked{
       background-color: orangered;
-  }
+  } */
 select {
 
     /* styling */
     background-color: white;
-    border: thin solid blue;
+    /* border: thin solid blue; */
     border-radius: 4px;
     display: inline-block;
     font: inherit;
-    line-height: 1.5em;
+    line-height: 1em;
     padding: 0.5em 3.5em 0.5em 1em;
   
     /* reset */
@@ -82,6 +111,7 @@ select {
     box-sizing: border-box;
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
   }
   
   
@@ -93,8 +123,8 @@ select {
       linear-gradient(135deg, blue 50%, transparent 50%),
       linear-gradient(to right, skyblue, skyblue);
     background-position:
-      calc(100% - 20px) calc(1em + 2px),
-      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 20px) calc(1em),
+      calc(100% - 15px) calc(1em),
       100% 0;
     background-size:
       5px 5px,
@@ -128,50 +158,98 @@ select {
   select optgroup[label]{
     font-size: 1.25em;
     MARGIN-LEFT:0PX;
+    color:black;
+    background-color:rgb(214, 212, 212);
   }
   optgroup option{
-    font-size: .85em;
+    font-size: .75em;
+    font-weight:700;
+    text-indent:20px;
     padding-left:50px;
-    
+    color:hsl(0, 0%, 26%);
+    background-color:white;
     
   }
   select option[disabled]{
     
-    color:rgb(33, 33, 180);/*rgb(77, 57, 50);*/
+    color:rgb(77, 76, 76);/*rgb(77, 57, 50);*/
     font-size: 20px;
     font-weight:100;
-    
+    border-bottom:1px solid;
     
   }
+  
  
+ 
+  #unitWrapper,#unitTypeWrapper{
+    flex-direction: column;
+  }
   option.line{
     border-bottom: 2px solid black;
   }
+  .componentWrapper{
+    display:flex;
+    justify-content: right;
+    align-items:center;
+  }
 .visibleInput{
-	display:block;
-	float:right;
-  
-	margin:5px;
+	display:flex;
+  justify-content: left;
+  position:relative;
+  /* align-items:center; */
+	/* float:right; */
+  height:auto;
+	margin:3px;
 	clear: both;
 	
 }
+.teal{
+  color:hsl(180, 100, 25)
+}
+fieldset{
+  border: 0;
+  width: 32%;
+}
 .visibleFieldset{
-    display: block;	
+    display: block;
 	margin:5px;
 	clear: both;	
-  width:500px;
+  width:400px;
+}
+.message{
+  width:100%;
+  color:red;
 }
 .hiddenInput{
         display:none;
-        float:right;
+        /* float:right; */
 }
-
+/* #dateWrapper_OTL_SCHEDULED{
+  border:1px solid #5e81ad;
+} */
+#dateWrapper{
+  
+  flex-direction:column;
+}
 #customerNameWrapper{
         
         overflow: hidden;
-        height: 2.75em;
+        height: 2.5em;
 }
 
+.actionLink{
+  font-size: .8rem;
+  cursor: pointer;
+  margin: 3px;
+  color: dodgerblue;
+  text-decoration-line:none;
+  margin-left:10px;
+  
+}
+.actionLink:hover{
+  color: rgb(180, 134, 180);
+
+}
 #contactsIcon{
         display:inline-block;
         background-color: white;
@@ -183,23 +261,64 @@ select {
         cursor: pointer;
 }
 #h {
-    text-align:right;
+    text-align:left;
+}
+#addForm{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 #formButtons{
-    width: 100%;
-    margin-left: 20px;
+  display:flex;
+  justify-content: space-around;
+  
+    
+    
 }
 #formButtons input{
     margin:5px;
     text-align: center;
 }
-input[type="text"], select{
+/* input[type="text"], select{
     width: 200px;
     box-sizing: content-box;
     -webkit-box-sizing: content-box;
+} */
+select{
+  width: 200px;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
 }
 #contactsList{
     float: right;
     width:185px;
+}
+.btn{
+  display:flex;
+  width:30%;
+  height:30px;
+  justify-content: center;
+  border:1px solid #5e81ad;
+  background-color:#5e81ad;
+  border-radius: 3px;
+  cursor:pointer;
+  color: black;
+  text-shadow: 1px 1px black;
+  text-align: center;  
+}
+.btn:hover{
+  color:white;
+  
+}
+
+.cb{
+  display:flex;
+  flex-direction: row;
+  justify-content: right;
+  color:white;
+}
+.cb:first-of-type{
+  margin-top:20px;
 }

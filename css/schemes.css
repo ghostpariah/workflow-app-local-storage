@@ -1,0 +1,25 @@
+:root{
+	/* background color scheme */
+	--clr-bg-primary: hsl(0, 0%, 96%);
+	--clr-bg-secondary: hsl(0, 1%, 15%);
+	--clr-bg-legend: hsl(0, 0%, 100%);
+	--clr-bg-header-main: hsl(0, 0%, 0%);
+	--clr-bg-header-section: hsl(213, 33%, 52%);
+	--clr-bg-header-glimpse: hsl(256, 49%, 39%);
+	--clr-bg-header-main-border: hsl(213, 33%, 52%);
+	--clr-bg-button-main: hsl(213, 49%, 39%);
+	/* job color scheme */
+	--clr-spring: hsl(213, 33%, 52%);
+	--clr-checkall: hsl(36, 100%, 52%);
+	--clr-alignment: hsl(304, 33%, 52%);
+	--clr-kingpin: hsl(124, 33%, 52%);
+	--clr-frame: hsl(11, 100%, 50%);
+	--clr-pending: hsl(0, 0%, 0%);
+
+	/* font colors */
+	--clr-font-header: hsl(213, 33%, 52%);
+	--clr-font-header-section: hsl(0, 0%, 0%);
+	--clr-font-button-main: hsl(0, 0%, 100%);
+
+	
+}

@@ -1,16 +1,20 @@
+@import './schemes.css';
 body{
-    background-color: black;
+    background-color: var(--clr-bg-header-section);
     width:500px;
     height:auto;
-    color: white;
+    color: var(--clr-font-header-section);
     font-weight: 400;
     font-family: "Arial Narrow";
 }
+
 datalist{
 	display:none;
 	z-index: 900000;
     visibility: collapse;
-    height: 0px;
+    
+    overflow-y: scroll;
+    height: 400px;
     
 }
 #txtCustomerName{
@@ -19,13 +23,31 @@ datalist{
     margin: auto;
     margin-left:calc(100%/3);
 }
+
 #customerNameWrapper{
-    display: none;
-    float:left;
-    
+    /* display:block; */
+    display:flex;
+    justify-content: center;
     width:100%;
-    margin:auto;
+    /* margin:auto; */
+    margin-bottom:10px;
     
+}
+#editCustNameWrapper{
+    display:none;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap:5px;
+    width:100%;
+    
+    margin-top:25px;
+    
+  }
+#inpCompanyNameEdit{
+    margin:0;
+    display:flex;
+    height:2.5em;
 }
 #newContactFormContainer{
     display:none;
@@ -33,31 +55,40 @@ datalist{
 }
 select option :disabled{color:blue;}
 #companyHeader{
-    float:left;
-    clear:both;
+    /* float:left;
+    clear:both; */
     padding:0;
     
-    color:#5e81ad;/*rgb(186, 245, 242);*/
+    color:var(--clr-bg-header-main);/*rgb(186, 245, 242);*/
     display:none;
     
     width:100%;
     margin-right:20px;
 }
-label{
-    color:#5e81ad;
+.sticky{
+    position: -webkit-sticky;
+    position: sticky;
 }
+
 ul li ul > a{
     font-size:15px;
     text-decoration: none;
     text-align: right;
     float: center;
 }
+/* ul{
+    background-color:aliceblue;
+} */
+/* ul li:nth-child(odd){
+    background-color: #749dcf;
+} */
 #contactsMain{
     float: left;
     width: 100%;
     display: "block";
-    
+    background-color: var(--clr-bg-header-section);
     margin-right:20px;
+    color:black;
     
 }
 #contactsHeader h2{
@@ -78,7 +109,8 @@ width:100%;
 input{
    
     border:1px solid #5e81ad;
-    height: 1.25rem;
+    height: 2rem;
+    width: 225px;
     float: left;    
     padding-left: 5px;
     margin: auto
@@ -102,7 +134,7 @@ label{
 }
 ul {
 font-size: 1.4rem;
-color: #5e81ad;/*lightcyan;*/
+/* color: #5e81ad;lightcyan; */
 list-style: none;
 padding-left: 15px;
 font-weight:200;
@@ -110,44 +142,46 @@ font-weight:200;
 }
 ul li{
     clear: both;
-    border-top: 1px solid #5e81ad;/*lightcyan;*/
+    border-top: 1px solid black;/*lightcyan;*/
     font-weight: 800;
+    /* border-bottom: 1px solid black; */
+    padding-top: 10px;
 }
 ul li ul{
     clear: both;
     font-size: 1.15rem;
-    color: #5e81ad;
+    color: #032753;
     padding-left: 30px;
     padding-bottom: 10px;
    
 
 }
-.contactName{
-    float:left;
-    margin: 0 5px 10px 5px;
-}
+
 ul li ul li{
     clear: both;
     
     list-style: none;
-    font-size: .85em;
-    color:white;
+    font-size: 1em;
+    color:aliceblue;
     list-style-position: outside;
     padding-left: 15px;
     border: none;
     font-weight: 200;
 }
 .actionLink{
-    font-size: .8rem;
+    font-size: 1.2rem;
     cursor: pointer;
     margin: 3px;
-    color: plum;
+    color: var(--clr-bg-secondary);
     text-decoration-line:none;
     display:none;
 }
 .actionLink:hover{
-    color: rgb(180, 134, 180);
+    color: hsl(0, 0%, 35%);
 
+}
+span.actionLink i{
+    margin-left:5px;
 }
 #currentContacts{
     width:100%;
@@ -164,8 +198,9 @@ ul li ul li{
     
 }
 .indicator{
-    color:red;
-    font-size: .5em;
+    color:hsl(300, 84%, 87%);
+    color:yellowgreen;
+    font-size: 1em;
 }
 .visible{
     display:block;
@@ -182,6 +217,7 @@ ul li ul li{
 .divPrimaryCheckbox label{
     font-size: 1em;
     margin-left:5px;
+    color:#032753;
 }
 
   
@@ -204,26 +240,33 @@ ul li ul li{
     visibility: visible;
   }
   #buttonContainer{
-      float:left;
+      /* float:left; */
       width:100%;
-      display:block;
+      display:flex;
+      justify-content: space-around;
+      flex-direction: row;
   }
 .contactButton{
-    width: 30px;
-    height:15px;
+    width: 55px;
+    height:30px;
     text-align: center;
     margin:5px 3px 3px 10px;
     cursor: pointer;
-    border: 1px solid #5e81ad;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3px;
     float:left;
-    padding:2px 10px;
-    font-size:12px;/*.8em;*/
-    color:#5e81ad;
+    border: 2px solid green;
+    font-size:.8em;/*.8em;*/
+    border-radius: 5px;
+    color:white;
+    background-color: green;
     
 }
 .contactButton:hover{
-    color:black;
-    background:#5e81ad;
+    border: 2px solid white;
+    
 }
 .smallButtonContainer{
     float:left;
@@ -231,8 +274,10 @@ ul li ul li{
     margin-left: 15px;
     
 }
-#cbPrimary{
-    margin-right: 10px;
+.cbPrimary{
+    width: 10px;
+    height:10px;
+    outline-color: dodgerblue;
 }
 
 .smallButton{
@@ -247,6 +292,31 @@ ul li ul li{
     font-size:12px;/*.8em;*/
     color:#5e81ad;
     
+}
+.button{
+    float:right;
+    border:1px solid #5e81ad;
+    background-color:#5e81ad;
+    margin: 3px;;/* */
+    padding:1px 3px;
+    cursor:pointer;
+    color: black;
+    width: 70px;
+    text-align: center;  
+    box-sizing: border-box;
+    
+}
+.button:hover{
+    border:2px solid white;  
+    box-sizing: border-box;
+}
+.large{
+    width:100px;
+    box-sizing: border-box;
+    border: 2px solid #5e81ad;
+}
+.medium{
+    width:70px;
 }
 .largeButton{
     float:right;
@@ -269,44 +339,71 @@ ul li ul li{
     font-size:2em;
     margin: 10px 10px 10px 0;
     font-weight: 800;
-    width:100%;
+    
     text-align: center;
     border-bottom: 1px solid black;
-    cursor: pointer;
+    
+}
+.headerContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    
 }
 .mainContactButton{
-    float:right;
-    border:1px solid #5e81ad;
-    
+    /* float:right; */
+    border:1px solid var(--clr-bg-button-main);
+    border-radius: 5px;
     margin: 3px;;/* */
     padding:1px 3px;
     cursor:pointer;
-    
+    background-color: var(--clr-bg-button-main);
     width: calc(90%/3);
     text-align: center;
 }
 .mainContactButton:hover{
-    color:black;
-    background: #5e81ad;
+   
+    border: 1px solid white; 
     cursor:pointer;
 }
+.mainContactButton i{
+    margin-left:10px;
+}
 .buttonSelected{    
-    background-color: #5e81ad;    
-    color:black;    
+    border: 1px solid white;    
+    color:white;    
 }
 .buttonUnselected{    
-    background-color: black;    
-    color:#5e81ad;    
+        
+    color:var(--clr-font-button-main);    
 }
 
 .nameInput{
-    width:100px;
+    width:150px;
     margin: 5px 5px 5px 5px;
     float:left;
 }
 .wrapper{
+    display:flex;
+    flex-direction: row;
+
     width:100%;
-    float:left;
+    /* float:left; */
+}
+.message{
+    width:100%;
+    color:red;
 }
 
-
+.lbContacts{
+    top:48px;
+}
+.contactNameRow{
+    display:flex;
+    width:100%;
+    gap:5px;
+    justify-content: left;
+    align-items: center;
+    /* border-bottom: 1px solid black; */
+}

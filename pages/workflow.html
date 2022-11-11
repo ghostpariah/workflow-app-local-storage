@@ -3,15 +3,19 @@
 <head>
 
 	<title>Workflow App</title>
+	
 	<link id= "mainStyle" rel="stylesheet" type="text/css" href="../css/workflow.css">
 	<link rel="stylesheet" type="text/css" media="all" href="../scripts/jquery-ui-1.11.4.custom/jquery-ui.css">
 	<link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
-	<!--<link rel="stylesheet" type="text/css" href="../css/calendar_style.css"/>-->
+	
 	<link rel="stylesheet" type="text/css" href="../css/splash.css"/>
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&family=Quicksand:wght@500&family=Caveat&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="../css/components.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/formComponents.css">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-	
+	<script src="https://kit.fontawesome.com/ea20293ee7.js" crossorigin="anonymous"></script>
+	<script src='../scripts/dbCon.js'></script>
 	<script src="../scripts/splash.js"></script>
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 	<script src="../scripts/currency.js"></script>
@@ -22,6 +26,7 @@
 	<script src="../scripts/login.js"></script>
 	<script src="../scripts/index.js" defer></script>
 	<script src="../scripts/report.js"></script>
+	<script src='../scripts/createComponent.js' defer></script>
 	
 		
 	
@@ -37,9 +42,10 @@
 					<div id="addNewJob" onclick="openAddJob()">
 						Add New
 					</div>
+					
 				</div>
 				<div id="headerMiddle">
-					<img id="logo" src="../images/wordmark3.png"/>
+					
 				</div>
 				<div id="headerRight">
 					<div id= 'topCounts'>
@@ -62,7 +68,7 @@
                             </div>
                             <div id="wpuBox" class="waitingForParts">
                                     <div id="wpuBoxHeader" class="header">
-                                        <div id='t' ondrop="deleteDrop(event)" ondragover="allowDrop(event)"><img onclick='deleteCompletedJobs()' src="../images/trashCanIcon.svg" width="25" height="25"> </object></div>
+                                        <div id='t' ondrop="deleteDrop(event)" ondragover="allowDrop(event)"><img onclick='deleteCompletedJobs()' src="../images/trashCanIcon.svg" width="25" height="25"> </img></div>
                                         Completed Jobs
                                         <div class="closeButton" onclick="closeBox(event,this)">X</div>                                        
                                     </div>
@@ -105,28 +111,15 @@
 							
 			</div>
 			<div id="legend">
-				<div id="legend-color-blocks">
-					<span style="background-color:#5e81ad;">Spring</span>
-					<span style="background-color:#ff9e0c;">Check All</span>
 				
-					<span style="background-color:#ad5ea8;">Alignment</span>
-					<span style="background-color:#5ead63;">King Pin</span>
-					<span style="background-color:#ff2d00;">Frame</span>
-				</div>
-				<div id="legend-statuses">
-					<img src="../images/dollarSignSmaller.jpg"/> = Cash Customer <b>|</b>&nbsp; 
-					<img src="../images/iconWaiting.png"/> = Customer Waiting <b>|</b>&nbsp; 
-					<img src="../images/iconParts.png"/> = Waiting For Parts <b>|</b>&nbsp;
-					<img src="../images/iconApproval.png"/> = Waiting For Approval <b>|</b>&nbsp;
-					<img src="../images/warningLegendIcon.png"/> = Comeback <b>|</b>&nbsp;
-					<img src="../images/checkmark-icon.jpg"/> = Checked
-				</div>
+				
 				<div id='login-message'>&nbsp;</div>
 				<div id="legendButtonContainer">
 					<div id="btnLogin" class="legendButton" onclick="openLoginWindow()">Log In					
 					</div>
                     <div id="btnContacts" class="legendButton" onclick="openContacts()">Contacts					
 					</div>
+					<div id="btnReports" class="legendButton" onclick="openReports()">Reports</div>
 					<div id="btnAdmin" class="legendButton" onclick="toggleAdminMenu()">
 						Administration
 						<div id="adminMenu" class='adminMenu'>
@@ -142,7 +135,7 @@
 			<div id="contentArea">
                 <div id="left">
                    
-                    <div id="SCH" class="bottomBox" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                    <div id="SCH" class="bottomBox" ondrop="drop(event)" ondragover="allowDrop(event)">
 						<div class="header">
 							Scheduled
 						</div>
@@ -170,7 +163,7 @@
 						</div>
 						<div id="schBox" class="bottomBoxOpen">
 							<div id="schBoxHeader" class="header">
-								Scheduled
+								<div class="heading">Scheduled</div>
 								<div class="closeButton" onclick="closeBox(event,this)">X
 								</div>
 							</div>
@@ -194,76 +187,114 @@
 						<div class="header" id="wfwHeader">
 							On the Lot
 						</div>
-						<div class="bucket" id="sBucket">
-						<div class="job" id="wfw0" name="holder" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw1" name="holder" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw9" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw10" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw11" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						</div>
-						<div class="bucket" id="aBucket">		
-						<div class="job" id="wfw12" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw13" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw14" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw15" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw16" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw17" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw18" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw19" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw20" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw21" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw22" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw23" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						</div>
-						<div class="bucket" id="kBucket">
-						<div class="job" id="wfw24" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw25" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw26" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw27" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw28" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw29" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw30" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw31" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw32" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw33" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw34" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw35" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						</div>
-						<div class="bucket" id="fBucket">
-						<div class="job" id="wfw36" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw37" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw38" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw39" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw40" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw41" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw42" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw43" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw44" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw45" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw46" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div class="job" id="wfw47" ondrop="drop(event)" ondragstart="hideTT(event)" ondragover="allowDrop(event)"></div>
-						</div>
-						<div class="bucket" id="cBucket">
-							<div class="job" id="wfw48" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw49" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw50" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw51" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw52" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw53" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw54" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw55" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw56" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw57" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw58" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-							<div class="job" id="wfw59" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						<div id="buckets">
+							<div class="bucket" id="sBucket">
+								<div class="bucketHeader jobCatSpring">SPRING</div>
+								<div class="job" id="wfw0" name="holder" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw1" name="holder" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw9" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw10" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw11" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 							</div>
+							<div class="bucket" id="oBucket">
+								<div class="bucketHeader jobCatSpring">OVERFLOW</div>
+								<div class="job" id="wfw60"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw61" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw62" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw63" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw64" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw65" ondrop="drop(event)" ondragover="allowDrop(event)"></div>							
+								<div class="job" id="wfw66" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw67" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw68" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw69" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw70" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw71" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							</div>
+							<div class="bucket" id="aBucket">
+								<div class="bucketHeader jobCatCheckAll">CHECK ALL</div>		
+								<div class="job" id="wfw12" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw13" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw14" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw15" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw16" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw17" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw18" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw19" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw20" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw21" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw22" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw23" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							</div>
+							<div class="bucket" id="kBucket">
+								<div class="bucketHeader jobCatAlignment">ALIGNMENT</div>
+								<div class="job" id="wfw24" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw25" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw26" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw27" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw28" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw29" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw30" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw31" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw32" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw33" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw34" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw35" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							</div>
+							<div class="bucket" id="fBucket">
+								<div class="bucketHeader jobCatKingPin">KING PIN</div>
+								<div class="job" id="wfw36" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw37" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw38" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw39" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw40" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw41" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw42" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw43" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw44" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw45" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw46" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw47" ondrop="drop(event)" ondragstart="hideTT(event)" ondragover="allowDrop(event)"></div>
+							</div>
+							<div class="bucket" id="cBucket">
+								<div class="bucketHeader jobCatFrame">FRAME</div>
+								<div class="job" id="wfw48" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw49" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw50" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw51" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw52" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw53" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw54" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw55" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw56" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw57" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw58" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job" id="wfw59" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							
+							</div>
+							<div class="bucket pending">
+								<div class="bucketHeader overflow">PENDING</div>
+								<div class="job"  id="pen0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen2"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen3"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen4"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen5"ondrop="drop(event)" ondragover="allowDrop(event)"></div>							
+								<div class="job"  id="pen6"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen7"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen8"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen9"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen10"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+								<div class="job"  id="pen11"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							</div>
+						</div>
 						
 					</div>
 
@@ -276,55 +307,69 @@
 						<div class="headerShop">
 							Back Shop
 						</div>
-						<div id="wip0" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div id="wip1" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						<div class="shop-section">
+							<div id="wip0" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							<div id="wip1" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						</div>
 						<div class="headerShop">
 							Alignment
 						</div>
-						<div id="wip2" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div id="wip3" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						<div class="shop-section">
+							<div id="wip2" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>						
+							<div id="wip3" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						</div>
 						<div class="headerShop">
 							Frame
 						</div>
-						<div id="wip4" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div id="wip5" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						<div class="shop-section">
+							<div id="wip4" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							<div id="wip5" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						</div>
 						<div class="headerShop">
 							Pit 2
 						</div>
-						<div id="wip6" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div id="wip7" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						<div class="shop-section">
+							<div id="wip6" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							<div id="wip7" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						</div>
 						<div class="headerShop">
 							Pit 1
 						</div>
-						<div id="wip8" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div id="wip9" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						<div class="shop-section">
+							<div id="wip8" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							<div id="wip9" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						</div>
 						<div class="headerShop">
 							Floor
 						</div>
-						<div id="wip10" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						<div id="wip11" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
+						<div class="shop-section">
+							<div id="wip10" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							<div id="wip11" class="job" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						</div>
 					</div>
 					<div id="bottom">
                     
 					
 					<div class = 'header'>Whiteboard</div>
-					<div contenteditable="true" id="whiteBoardContent" ondragenter="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" class="whiteBoardContent" ></div>
+					<div contenteditable="true" id="whiteBoardContent" ondragenter="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" class="whiteBoardContent" tabindex="-1"></div>
 						
 				</div>
 				</div>
-				<!--
-				<div id="bottom">
-                    
+				
+				</div>
+				<div id="footer">
+				<div id="legend-statuses">					
+					<img src="../images/cash2.svg" width="15" height="15"/> = Cash Customer &nbsp;<b>|</b>&nbsp;
+					<img src="../images/waiting.svg" width="15" height="15"/> = Customer Waiting &nbsp;<b>|</b>&nbsp; 
 					
-					<div class = 'header'>Whiteboard</div>
-					<div contenteditable="true" id="whiteBoardContent" ondragenter="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" class="whiteBoardContent" ></div>
-						
+					<img src="../images/schedule4.svg" width="15" height="15"/> = On the Lot & Scheduled &nbsp;<b>|</b>&nbsp;					
+					<img src="../images/checkmark.svg" width="15" height="15"/> = Checked 
+					
 				</div>
-				-->	
-				</div>
+			</div>
             
 			</div>
+			
 		</div>
 		
     </body>

@@ -7,7 +7,8 @@
     
     
     <link rel="stylesheet" type="text/css" media="all" href="../css/login.css">
-    <script type="text/javascript" src="../scripts/login.js"></script>
+    <script src='../scripts/dbCon.js'></script>
+    <script type="text/javascript" src="../scripts/login.js" defer></script>
 	
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 	
@@ -27,10 +28,16 @@
     <h3>Log In</h3>
     <div id="-message-area"></div>
     <form>
-    <label class="-user-label">User Name:</label>
-    <input class="-user-input-text" id="user" autofucus><br>
-    <label class="-user-label">Password:</label>
-    <input class="-user-input-text" type="password" id="password"><br>
+     <div class="loginWrapper">       
+        <label class="-user-label">User Name:</label>
+        <input class="-user-input-text" id="user" autofucus>
+    </div> 
+    <br>
+    <div class="loginWrapper">
+        <label class="-user-label">Password:</label>
+        <input class="-user-input-text" type="password" id="password">
+    </div>
+    <br>
     
         <div id='lsDiv'>
             <input id="loginSubmit" class="-user-submit" type="button" value="submit" onclick="login()"/>

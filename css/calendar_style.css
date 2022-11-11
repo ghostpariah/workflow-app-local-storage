@@ -1,3 +1,6 @@
+:root{
+    --speech-arrow-offset: -1px;
+}
 body{
     background:black;
     font-family: 'Arial Narrow';
@@ -49,30 +52,109 @@ body{
     
 }
 .jobWallet{
+   
     border:2px solid #1b1a1a;
     height:auto;
     width:300px;
     position:absolute;
     color:whitesmoke;
-    left:90px;
-    bottom: 40px;    
+    top:20%;
+    left:100%;/*90px*/
+    /* bottom: 40px;     */
     background-color: black;
     z-index: 1;
     padding:0;
     
 }
+/* right side speech bubble arrow to point to calendar day */
+.speechArrowRight::before{
+    transform: skewX(0deg);
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: 100%;
+    border-width: 0 0 15px 30px;/*30px 30px 0 0;*/
+    border-style: solid;
+    border-color: black transparent;
+    clear:both;
+}
+/* left side speech bubble arrow to point to calendar day */
+.speechArrowLeft::before{
+    transform: skewX(0deg);
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 100%;
+    border-width: 0 30px 15px 0;/*30px 30px 0 0;*/
+    border-style: solid;
+    border-color: black transparent ;
+    clear:both;
+}
+/*variable jobwallet class for moving speech arrow down on right side*/
+.varJobWalletRight::before{
+    transform: skewX(0deg);
+    content: "";
+    position: absolute;
+    top: var(--speech-arrow-offset);
+    right: 100%;
+    border-width: 0 0 15px 30px;/*30px 30px 0 0;*/
+    border-style: solid;
+    border-color: black transparent;
+    clear:both;
+}
+/*variable jobwallet class for moving speech arrow down on leftside*/
+.varJobWalletLeft::before{
+    transform: skewX(0deg);
+    content: "";
+    position: absolute;
+    top: var(--speech-arrow-offset);
+    right: 100%;
+    border-width: 0 30px 15px 0;/*30px 30px 0 0;*/
+    border-style: solid;
+    border-color: black transparent;
+    clear:both;
+}
+/* customer name box in jobwallet job */
+.cnBox{
+    
+    width:100%;
+    color:rgb(78, 78, 78);
+    font-weight: 500;
+}
+.cnBoxHeader{
+    
+    width:100%;
+    color:black;
+    
+}
 
 .jobWalletLeft{
+
     border:2px solid #1b1a1a;
     height:auto;
     width:300px;
     position:absolute;
     color:whitesmoke;
-    left:-200px;
-    bottom: 40px;    
+    top:20%;
+    right:100%;/*90px*/
+    /* bottom: 40px;     */
     background-color: black;
     z-index: 1;
     padding:0;
+    
+    /* border:2px solid #1b1a1a;
+    height:auto;
+    width:300px;
+    position:absolute;
+    color:whitesmoke;
+    top:20%;
+    left:-200px;
+    
+    bottom: 40px;    
+    background-color: black;
+    z-index: 1;
+    padding:0; */
+    
     
 }
 .top{
@@ -266,6 +348,8 @@ body{
 	
 }
 .calJobContainer{
+    display:flex;
+    flex-direction: column;
     position:relative; 
     width:95%;
     border: 1px solid #cecece;
@@ -276,7 +360,7 @@ body{
     margin: 2px;
     /* border-radius: 3px; */
     font-family: "Arial Narrow";
-    font-size:10px;
+    font-size:14px;
     color: whitesmoke;
     text-align: center;
     font-weight: bold;
@@ -354,7 +438,7 @@ li.cmListItem:hover{
     font-size: 16px;
     margin-top: 5px;
     position: absolute;
-    border: 1px solid #5e81ad;
+    /* border: 1px solid #5e81ad; */
     width: 125px;
     height:auto;
     padding:0;
@@ -366,6 +450,16 @@ li.cmListItem:hover{
     bottom:25px; 
     z-index: 1000;
     
+}
+.cm_list::after{
+    transform: skewX(-45deg);
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 100%;
+    border-width: 20px 10px 0 0;
+    border-style: solid;
+    border-color: #1b1a1a transparent;
 }
 .left{
     left:-120px;

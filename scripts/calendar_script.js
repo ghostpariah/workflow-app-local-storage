@@ -1,5 +1,5 @@
-const calElectron = require('electron')
-const calIPC = calElectron.ipcRenderer
+//const calElectron = require('electron')
+//const calIPC = calElectron.ipcRenderer
 const date = new Date();
 let allJobs
 let scheduledJobs
@@ -33,17 +33,17 @@ var daysInMonth= function (month,year){
     
     return 32 -new Date(year,month,32).getDate();
 };
-calIPC.on('opened', (event,args)=>{
+ipc.on('opened', (event,args)=>{
     currentUser = args
     
     //console.log(hd.isHoliday(new Date('2022-4-17')))
 })
-calIPC.on('load-calendar', (event,args)=>{
+ipc.on('load-calendar', (event,args)=>{
     resetCalendar();
     setCalendarMonth();  
     console.log(hd.getCountries())  
 })
-calIPC.on('refresh', (event,args)=>{
+ipc.on('refresh', (event,args)=>{
     calendarLoad()
 
 })
@@ -173,12 +173,19 @@ function fillDays(y){
         }
         am.setAttribute("id","am"+cell);
         am.ondblclick = function(){
-            
+            let preview = false
             let objCalData = new Object()
             objCalData.launcher = 'calendar'
             objCalData.time_of_day = 'am'
-            objCalData.date_scheduled = `${monthIndex+1}/${this.parentNode.firstChild.childNodes[1].textContent}/${year}`
-            calIPC.send('open-add-job', currentUser, objCalData)
+            let m = monthIndex+1
+
+            //if it is part of the greyed out next month preview
+            if(this.classList.contains('preview')){
+                preview = true
+            }
+            
+            objCalData.date_scheduled = getFormattedDateString(year, this.parentNode.getAttribute('data-julian'),preview)
+            ipc.send('open-add-job', currentUser, objCalData)
             
         };
         
@@ -191,11 +198,16 @@ function fillDays(y){
         }
         pm.setAttribute("id","pm"+cell);
         pm.ondblclick = function(){
+            let preview = false
             let objCalData = new Object()
             objCalData.launcher = 'calendar'
             objCalData.time_of_day = 'pm'
-            objCalData.date_scheduled = `${monthIndex+1}/${this.parentNode.firstChild.innerHTML}/${year}`
-            calIPC.send('open-add-job', currentUser, objCalData)
+            if(this.classList.contains('preview')){
+                preview = true
+            }
+           
+            objCalData.date_scheduled = getFormattedDateString(year, this.parentNode.getAttribute('data-julian'),preview)
+            ipc.send('open-add-job', currentUser, objCalData)
         };
         document.getElementById("dayBlock"+cell).appendChild(pm);
         var j;
@@ -284,32 +296,40 @@ function fillDays(y){
     }
     switch(totalBlocks){
         case 28:
-            calIPC.send('resize-calendar', [1087,477])
+            ipc.send('resize-calendar', [1087,477])
             break;
         case 35:
-            calIPC.send('resize-calendar', [1087,562])
+            ipc.send('resize-calendar', [1087,562])
             break;
         case 42:
-            calIPC.send('resize-calendar', [1087,647])
+            ipc.send('resize-calendar', [1087,647])
             break;
         default:
-            //calIPC.send('resize-calendar', [1087,562])
+            //ipc.send('resize-calendar', [1087,562])
             break;
     }
     
     
 }
+function getFormattedDateString(y,jd,preview){
+   
+    let m =(preview) ? monthIndex +2 : monthIndex+1
+    let mo = m.toString().padStart(2,'0')
+    let ds = new Date(y,0,jd).getDate().toString().padStart(2,'0')
+    console.log(`${mo}/${ds}/${y}`)
+    return `${mo}/${ds}/${y}`
+}
 function getScheduled(){
     arrScheduledJobs = []
 
-    allJobs = calIPC.sendSync('pull_jobs')
+    allJobs = ipc.sendSync('pull_jobs')
     for(member in allJobs){
 
-		(allJobs[member].status == 'sch')? arrScheduledJobs.push(allJobs[member]):'';
+		(allJobs[member].status == 'sch' || allJobs[member].comeback_customer == 1)? arrScheduledJobs.push(allJobs[member]):'';
 	}
     console.log(arrScheduledJobs)
    for(i=0;i<arrScheduledJobs.length;i++){
-       arrScheduledJobs[i].customer_name = calIPC.sendSync('db-get-customer-name',arrScheduledJobs[i].customer_ID)
+       arrScheduledJobs[i].customer_name = ipc.sendSync('db-get-customer-name',arrScheduledJobs[i].customer_ID)
    }
     
     return arrScheduledJobs
@@ -317,19 +337,37 @@ function getScheduled(){
 function countSchJobsForCalendar(){
     m=monthIndex+1;
     resetSCHcounts();
-    
+    let dim = daysInMonth(monthIndex, year)
     
     scheduledJobs = getScheduled()
-    
+    console.log('daysBefore = '+daysBefore, 'days in month = '+daysInMonth(monthIndex, year), 'daysAfter = '+daysAfter)
+    console.log(daysAfter+daysBefore+daysInMonth(monthIndex, year))
+    console.log(scheduledJobs.length)
     for(i=1;i<=daysInMonth(monthIndex, year)+daysAfter;i++){
         for(j=0;j<scheduledJobs.length;j++){
             let schD=scheduledJobs[j].date_scheduled;
             
             var calYear = schD.substr(schD.length - 4);
             
-            var todaysJulianDate=jDate(m.toString()+"/"+i.toString()+"/"+year.toString());
+            var todaysJulianDate
+            if(i<=daysInMonth(monthIndex, year)){
+                todaysJulianDate=jDate(m.toString()+"/"+i.toString()+"/"+year.toString());
+            }else{
+                
+                let nd = i - dim
+                if(monthIndex<11){
+                    let nm = m+1
+                    todaysJulianDate=jDate(nm.toString()+"/"+nd.toString()+"/"+year.toString());
+                }else{
+                    let nm = 1
+                    let ny = year+1
+                    todaysJulianDate=jDate(nm.toString()+"/"+nd.toString()+"/"+ny.toString());
+                }
+                
+
+            }
             var isEligible = (selectedYear==calYear || monthIndex==11) ? true:false;
-            
+            console.log(todaysJulianDate)
             if(todaysJulianDate==scheduledJobs[j].julian_date &&isEligible){
                
                 var ampm = scheduledJobs[j].time_of_day;
@@ -656,7 +694,7 @@ function showJobs(e){
         return da % 2 == 0
     });
     
-    (arrRightSide.includes(element.id.substring(8)))? schJobWallet.setAttribute("class","jobWalletLeft"): schJobWallet.setAttribute("class","jobWallet");
+    (arrRightSide.includes(element.id.substring(8)))? schJobWallet.setAttribute("class","jobWalletLeft speechArrowLeft"): schJobWallet.setAttribute("class","jobWallet speechArrowRight");
         
       
     //schJobWallet.setAttribute("class","jobWallet");    
@@ -723,23 +761,50 @@ function makeCalenderJobContainers(e){
             
         };
         jobContainer.oncontextmenu = function (event){
-            if(event.target.nodeName == "A" || event.target.nodeName == 'B'){
+            //if(event.target.nodeName == "A" || event.target.nodeName == 'B'){
                 openContextMenu(event.target.parentNode);
-            }else{
-            openContextMenu(event.target);
-            }
+           // }else{
+            //openContextMenu(event.target);
+            //}
             console.log(event.target.nodeName)
             return false;
         };
    
 
-        //job_type should be customer name. just used job_type to test
+        
+        /**
+         * create elements for jobwallet
+         * -customer name element
+         * -unti element
+         * -notes element
+         */
+
+        //create customer name box
+        let cnBox = document.createElement('span')
+        let cnText = document.createTextNode(thisDaysSchJobs[j].customer_name.toUpperCase())
+        cnBox.setAttribute('class','cnBoxHeader')
+        cnBox.appendChild(cnText)
+        cnBox.style.color = "#1a1a1a";
+
+        //create unit box
+        let unitBox = document.createElement('span')
+        
+        let unitText = (thisDaysSchJobs[j].unit)? document.createTextNode(thisDaysSchJobs[j].unit.toUpperCase()): document.createTextNode('');
+        unitBox.setAttribute('class','cnBox')
+        unitBox.appendChild(unitText)
+
+        //create notes box
+        let notesBox = document.createElement('span')
+        let notesText = document.createTextNode(thisDaysSchJobs[j].notes)
+        notesBox.setAttribute('class','cnBox')
+        notesBox.appendChild(notesText)
+    
         let cuN = "<b class='customerName'>"+thisDaysSchJobs[j].customer_name.toUpperCase()+'</b><br/>'
         let u = (thisDaysSchJobs[j].unit == null || thisDaysSchJobs[j].unit == '')?'': '<b>Unit: </b>'+thisDaysSchJobs[j].unit+'</br>'
-        let jcJT = thisDaysSchJobs[j].job_type.toUpperCase()
-        jobContainer.innerHTML=`${cuN}
-        ${u}
-        ${jcJT}`
+        let jcNotes = thisDaysSchJobs[j].notes//job_type.toUpperCase()
+        // jobContainer.innerHTML=`${cuN}
+        // ${u}
+        // ${jcNotes}`
         
         if(thisDaysSchJobs[j].waiting_customer=="-1"){
             jobContainer.innerHTML+="<br/>Customer will be waiting";
@@ -747,38 +812,43 @@ function makeCalenderJobContainers(e){
             switch(schJobType){
                 case "Spring":
 
-                    jobContainer.style.color="#5e81ad";                
+                    // jobContainer.style.color="#5e81ad";                
                     jobContainer.style.borderColor="#5e81ad";
+                    cnBox.style.backgroundColor = "#5e81ad";
                     
                 break;
                 case "Check All":
 
                     jobContainer.style.color="#ff9e0c";                  
                     jobContainer.style.borderColor="#ff9e0c";  
-                                
+                    cnBox.style.backgroundColor = "#ff9e0c";          
                     break;
                     
                 case "Alignment":
 
                     jobContainer.style.color="#ad5ea8";
                     jobContainer.style.borderColor="#ad5ea8";
-                    
+                    cnBox.style.backgroundColor = "#ad5ea8";
                     break;
                 case "King Pin":
 
                     jobContainer.style.color="#5ead63";                
                     jobContainer.style.borderColor="#5ead63"; 
-                    
+                    cnBox.style.backgroundColor = "#5ead63";
                     break;
                 case "Frame":
 
                     jobContainer.style.color="#ff2d00";                
                     jobContainer.style.borderColor="#ff2d00";
-                    
+                    cnBox.style.backgroundColor = "#ff2d00";
                     break;
                 default:
                     break;
             }
+         //append boxes to jobContainer
+         jobContainer.appendChild(cnBox)
+         jobContainer.appendChild(unitBox)
+         jobContainer.appendChild(notesBox)
             
         if(thisDaysSchJobs[j].time_of_day=="am"){
             document.getElementById("container0").appendChild(jobContainer);
@@ -789,12 +859,26 @@ function makeCalenderJobContainers(e){
         }
         
     }
-    var element = e;    
+    let jw = document.getElementById('jobWallet')
+    var element = e;  
+    let rect = jw.getBoundingClientRect()  
     var height = Math.floor($("#jobWallet").height());    
-    let shift = Math.floor((height-40)-element.offsetTop)*-1
-    
-    if(height>element.offsetTop){       
-        document.getElementById("jobWallet").style.bottom = shift+"px";        
+    //let shift = Math.floor((height-40)-element.offsetTop)*-1
+    //console.log(window.innerHeight + '  '+rect.bottom)
+    if(rect.bottom>window.innerHeight){ 
+        let shift = (rect.bottom - window.innerHeight)*-1 
+        //console.log(`height = ${height} offsetTop = ${element.offsetTop}`)  
+        if(jw.classList.contains('jobWalletLeft')){
+            jw.classList.add('varJobWalletLeft')
+        }else{
+            jw.classList.add('varJobWalletRight')
+        }
+        
+        jw.style.top = shift+'px'; 
+        document.body.style.setProperty(
+            '--speech-arrow-offset', 
+             ((shift-40)*-1)+'px'
+        );       
     }
     
 }
@@ -809,7 +893,7 @@ function openContextMenu(e){
 
         var rn = callingElement.getAttribute("job-id");
         console.log(`calling element ID=${e.id} job ID=${rn}`)
-        let objJobInfo = ()=> calIPC.sendSync('get-job', rn)
+        let objJobInfo = ipc.sendSync('get-job', rn)
         
         cId=callingElement.id;
         
@@ -828,13 +912,13 @@ function openContextMenu(e){
             //is it on the top row and on the right side (fri or sat)
             ? (arrWeekendContext.includes(thisDay))
                 //if on top row and the right side
-                ?  cmList.setAttribute("class","cm_list left top")
+                ?  cmList.setAttribute("class","cm_list")//"cm_list left top"
                 //on top row but not the right side
-                : cmList.setAttribute("class","cm_list top")
+                : cmList.setAttribute("class","cm_list")//"cm_list top"
             //not on top
             : (arrWeekendContext.includes(thisDay))
                 //not on top row but on the right side
-                ? cmList.setAttribute("class","cm_list left")
+                ? cmList.setAttribute("class","cm_list")//"cm_list left"
                 //not on top row or the right side
                 : cmList.setAttribute("class","cm_list")
 
@@ -861,13 +945,14 @@ function openContextMenu(e){
                         objLot.status = 'wfw'
                         objLot.designation = 'On the Lot'
                         objLot.date_in = todayIs()
-                        calIPC.send('update-job',objLot, 'calendar', currentUser)
+                        ipc.send('update-job',objLot, 'calendar', currentUser)
 
                         
                         break;
                     case "EDIT":
-                                               
-                        calIPC.send('open-edit', objJobInfo(), 'calendar', currentUser)                        
+                        //console.log(allCustomers)
+                        objJobInfo.customer_name = ipc.sendSync('db-get-customer-name',objJobInfo.customer_ID)                     
+                        ipc.send('open-edit', objJobInfo, 'calendar', currentUser)                        
                         
                         break;
                     case "NO-SHOW":
@@ -876,7 +961,7 @@ function openContextMenu(e){
                         objNoshow.job_ID = rn
                         objNoshow.no_show = 1
                         objNoshow.active = 0
-                        calIPC.send('update-job',objNoshow, "calendar",currentUser)
+                        ipc.send('update-job',objNoshow, "calendar",currentUser)
                         
                         break;
                     case "CANCEL APPT":
@@ -885,7 +970,7 @@ function openContextMenu(e){
                         objCancel.job_ID = rn
                         objCancel.cancelled = 1
                         objNoshow.active = 0
-                        calIPC.send('update-job',objCancel, "calendar",currentUser)
+                        ipc.send('update-job',objCancel, "calendar",currentUser)
                         
                         break;
                     default:

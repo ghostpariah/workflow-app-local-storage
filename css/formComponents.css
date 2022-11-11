@@ -1,0 +1,211 @@
+input{
+    /* clear browsers default styling */
+    /* margin: 0; */
+    margin-top:5px;
+    border: none;
+   
+    box-sizing: border-box;
+    
+
+    /* set app default styling */
+    
+    height: 35px;
+    width:250px;
+}
+input[type=text]{
+    
+    border-radius: 5px;
+    background-color: #f0f4fa;
+    font-family: Manrope;
+    font-size: .8em;
+    color:#0a073d;
+    
+}
+input[type=text]:focus-within{
+    background-color: white;  
+    color:#0a073d;
+    outline-color: dodgerblue;
+    outline-width: 1px;
+    
+ }
+
+ .smallInput{
+    border-radius: 5px;
+    background-color: #f0f4fa;
+    width: 45%;
+    
+    border:none;
+    outline-color: dodgerblue;
+}
+
+/* select element */
+input[type=select]{
+   border-radius: 5px 0 0 5px; 
+}
+
+/* checkbox element */
+input[type=checkbox]{
+    width: 20px;
+    height:20px;
+    outline-color: dodgerblue;
+}
+input[type=checkbox] + label{
+    margin-left: 10px;
+}
+/* radio element */
+input[type=radio]{
+    width: 20px;
+    height:20px;
+}
+
+/* submit button standard */
+input[type=button]{
+    background-color:green;/*#5ead8a;*/
+    color: whitesmoke;
+    height: 2.5em;
+    border: none;
+    width:auto;
+    margin: 10px 0;
+    cursor: pointer;
+    outline:none;
+    padding: 0 20px;
+    font-size: 1.1em;
+    border-radius: 5px;  
+    
+}
+textarea{
+    border-radius: 5px;
+    width: 250px;
+    height: 106px;
+    box-sizing: border-box;
+    outline-color: dodgerblue;
+    font-family: Manrope;
+    font-size: .8em;
+}
+/* .plusButton{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    height: 20px;
+    background-color:#5ead8a;
+    color: whitesmoke;
+    cursor: pointer;
+    outline:none;
+    border-radius: 5px; 
+    line-height: 20px; 
+    font-size: 20px;
+    padding-top: -5px;
+    overflow: hidden;
+} */
+.plusButton{
+    display:flex;
+    background-color:green;
+    width:20px;
+    height:18px;
+    border-radius: 5px;
+    position:relative;
+    box-sizing: border-box;
+    display:inline-block;
+    vertical-align:middle;
+    cursor: pointer;
+    outline:none;
+  }
+  .plusButton.plus:before,
+  .plusButton.plus:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color:whitesmoke;
+  }
+  .plusButton.plus:before{
+      width: 2px;
+      margin: 3px auto;
+  }
+  .plusButton.plus:after{
+      margin: auto 4px;
+      height: 2px;
+  }
+  
+  /* and a bonus!!! minus :-) */
+  .plusButton.minus:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: whitesmoke;
+      margin: auto 4px;
+      height: 2px;
+  }
+.plusButton:focus-within{
+    border: 1px solid white;
+}
+input[type=button]:focus-within{
+    border: 2px solid white;
+}
+
+
+/* text area / notes section */
+/* input[type=textarea]{
+    width: 250px;
+}
+
+input[type=select]{
+    
+} */
+
+/* ********* */
+/* select component pieces */
+/* ********* */
+.arrowBox{
+    display:table-cell;
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    height:100%;
+    width: 40px;
+    background-color: #070274;
+    border-radius: 0 5px 5px 0;
+}
+
+.arrow{
+    position: absolute;
+    top: 40%;
+    left:35%;
+    width: 0;
+    height:0;
+    border-color: whitesmoke transparent;
+    border-style: solid;
+}
+.up{
+    border-width: 0 6px 6px 6px;
+}
+.down{
+    border-width: 6px 6px 0 6px;
+   
+}
+/* make display: table and the pieces display: table-cell in order to fill space. 
+* Give fixed width to arrowBox and extraData*/
+.componentWrapper{
+    display:table;
+    
+}
+.extraDataBox{
+    display: flex;
+}
+input[type=button].mediumButton{
+    height:2em;
+    /* margin:0; */
+    box-sizing:unset;
+}
+input[type=button].mediumButton:focus-within{
+    border:spx solid white;
+    color: rgb(216, 215, 215);
+}

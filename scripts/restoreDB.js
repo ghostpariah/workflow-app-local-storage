@@ -1,10 +1,10 @@
-const electron = require('electron')
-const ipcRestoreDB = electron.ipcRenderer
+//const electron = require('electron')
+//const ipc = electron.ipcRenderer
 
 let allBackups
 
 window.onload = ()=>{
-    allBackups = ipcRestoreDB.sendSync('get-backups')
+    allBackups = ipc.sendSync('get-backups')
     console.log(allBackups)
     createButtons()
 }
@@ -13,7 +13,7 @@ function restoreDB(rp){
     
     //alert(rp)
     let restorePoint = rp
-    ipcRestoreDB.send('restore-database',restorePoint)
+    ipc.send('restore-database',restorePoint)
     
 }
 
@@ -31,7 +31,7 @@ function createButtons(){
 Are you sure you would like to roll back to the restore point?`)
             if(confirmed) restoreDB(button.id)
         })
-        let buttonText = document.createTextNode(allBackups[i].stats.mtime)
+        let buttonText = document.createTextNode(`${allBackups[i].stats.mtime} File Size: ${allBackups[i].stats.size}`)
         button.appendChild(buttonText)
         container.appendChild(button)
 
